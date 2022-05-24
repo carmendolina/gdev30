@@ -64,6 +64,7 @@ struct Vertex
 //float rotvar = sin(glfwGetTime());
 //float increment = 0.0f;
 int current = 0;
+float golden = ((1+sqrt(5))/2)/2;
 //
 //void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 //{
@@ -145,190 +146,16 @@ int main()
     }
 
     // --- Vertex specification ---
+    glm::vec3 v0 = glm::vec3(0,-golden,0.5);
     
     // Set up the data for each vertex of the triangle
-    Vertex vertices[36];
+    Vertex vertices[60];
     
-    vertices[0].x = -0.5f;    vertices[0].y = 0.5f;    vertices[0].z = -0.5f;
+    // center point of top triangle fan
+    vertices[0].x = 0.5f;       vertices[0].y = 0.0f;       vertices[0].z = golden;
     vertices[0].r = 255;        vertices[0].g = 255;        vertices[0].b = 255;
-    vertices[0].u = 0.25f;    vertices[0].v = 0.666f;
-    vertices[0].nx = 0.0f;       vertices[0].ny = 0.0f;       vertices[0].nz = 1.0f;
-
-    vertices[1].x = -0.5f;    vertices[1].y = -0.5f;    vertices[1].z = -0.5f;
-    vertices[1].r = 255;    vertices[1].g = 255;        vertices[1].b = 255;
-    vertices[1].u = 0.25f;    vertices[1].v = 0.333f;
-    vertices[1].nx = 0.0f;       vertices[1].ny = 0.0f;       vertices[1].nz = 1.0f;
-
-    vertices[2].x = 0.5f;    vertices[2].y = -0.5f;    vertices[2].z = -0.5f;
-    vertices[2].r = 255;        vertices[2].g = 255;        vertices[2].b = 255;
-    vertices[2].u = 0.5f;    vertices[2].v = 0.333f;
-    vertices[2].nx = 0.0f;       vertices[2].ny = 0.0f;       vertices[2].nz = 1.0f;
-    
-    vertices[3].x = -0.5f;    vertices[3].y = 0.5f;    vertices[3].z = -0.5f;
-    vertices[3].r = 255;        vertices[3].g = 255;        vertices[3].b = 255;
-    vertices[3].u = 0.25f;    vertices[3].v = 0.666f;
-    vertices[3].nx = 0.0f;       vertices[3].ny = 0.0f;       vertices[3].nz = 1.0f;
-    
-    vertices[4].x = 0.5f;    vertices[4].y = -0.5f;    vertices[4].z = -0.5f;
-    vertices[4].r = 255;        vertices[4].g = 255;        vertices[4].b = 255;
-    vertices[4].u = 0.5f;    vertices[4].v = 0.333f;
-    vertices[4].nx = 0.0f;       vertices[4].ny = 0.0f;       vertices[4].nz = 1.0f;
-    
-    vertices[5].x = 0.5f;    vertices[5].y = 0.5f;    vertices[5].z = -0.5f;
-    vertices[5].r = 255;        vertices[5].g = 255;        vertices[5].b = 255;
-    vertices[5].u = 0.5;    vertices[5].v = 0.666f;
-    vertices[5].nx = 0.0f;       vertices[5].ny = 0.0f;       vertices[5].nz = 1.0f;
-    
-    vertices[6].x = -0.5f;    vertices[6].y = 0.5f;    vertices[6].z = 0.5f;
-    vertices[6].r = 255;        vertices[6].g = 255;        vertices[6].b = 255;
-    vertices[6].u = 0.75f;    vertices[6].v = 0.666f;
-    vertices[6].nx = 0.0f;       vertices[6].ny = 0.0f;       vertices[6].nz = 1.0f;
-
-    vertices[7].x = -0.5f;    vertices[7].y = -0.5f;    vertices[7].z = 0.5f;
-    vertices[7].r = 255;    vertices[7].g = 255;        vertices[7].b = 255;
-    vertices[7].u = 0.75f;    vertices[7].v = 0.333f;
-    vertices[7].nx = 0.0f;       vertices[7].ny = 0.0f;       vertices[7].nz = 1.0f;
-
-    vertices[8].x = 0.5f;    vertices[8].y = -0.5f;    vertices[8].z = 0.5f;
-    vertices[8].r = 255;        vertices[8].g = 255;        vertices[8].b = 255;
-    vertices[8].u = 1.0f;    vertices[8].v = 0.333f;
-    vertices[8].nx = 0.0f;       vertices[8].ny = 0.0f;       vertices[8].nz = 1.0f;
-
-    vertices[9].x = -0.5f;    vertices[9].y = 0.5f;    vertices[9].z = 0.5f;
-    vertices[9].r = 255;        vertices[9].g = 255;        vertices[9].b = 255;
-    vertices[9].u = 0.75f;    vertices[9].v = 0.666f;
-    vertices[9].nx = 0.0f;       vertices[9].ny = 0.0f;       vertices[9].nz = 1.0f;
-
-    vertices[10].x = 0.5f;    vertices[10].y = -0.5f;    vertices[10].z = 0.5f;
-    vertices[10].r = 255;        vertices[10].g = 255;        vertices[10].b = 255;
-    vertices[10].u = 1.0f;    vertices[10].v = 0.333f;
-    vertices[10].nx = 0.0f;       vertices[10].ny = 0.0f;       vertices[10].nz = 1.0f;
-
-    vertices[11].x = 0.5f;    vertices[11].y = 0.5f;    vertices[11].z = 0.5f;
-    vertices[11].r = 255;        vertices[11].g = 255;        vertices[11].b = 255;
-    vertices[11].u = 1.0f;    vertices[11].v = 0.666f;
-    vertices[11].nx = 0.0f;       vertices[11].ny = 0.0f;       vertices[11].nz = 1.0f;
-    
-    vertices[12].x = 0.5f;    vertices[12].y = 0.5f;    vertices[12].z = -0.5f;
-    vertices[12].r = 255;        vertices[12].g = 255;        vertices[12].b = 255;
-    vertices[12].u = 0.5f;    vertices[12].v = 0.666f;
-    vertices[12].nx = -1.0f;       vertices[12].ny = 0.0f;       vertices[12].nz = 0.0f;
-
-    vertices[13].x = 0.5f;    vertices[13].y = -0.5f;    vertices[13].z = -0.5f;
-    vertices[13].r = 255;        vertices[13].g = 255;        vertices[13].b = 255;
-    vertices[13].u = 0.5f;    vertices[13].v = 0.333f;
-    vertices[13].nx = -1.0f;       vertices[13].ny = 0.0f;       vertices[13].nz = 0.0f;
-
-    vertices[14].x = 0.5f;    vertices[14].y = -0.5f;    vertices[14].z = 0.5f;
-    vertices[14].r = 255;        vertices[14].g = 255;        vertices[14].b = 255;
-    vertices[14].u = 0.75f;    vertices[14].v = 0.333f;
-    vertices[14].nx = -1.0f;       vertices[14].ny = 0.0f;       vertices[14].nz = 0.0f;
-
-    vertices[15].x = 0.5f;    vertices[15].y = 0.5f;    vertices[15].z = -0.5f;
-    vertices[15].r = 255;        vertices[15].g = 255;        vertices[15].b = 255;
-    vertices[15].u = 0.5f;    vertices[15].v = 0.666f;
-    vertices[15].nx = -1.0f;       vertices[15].ny = 0.0f;       vertices[15].nz = 0.0f;
-
-    vertices[16].x = 0.5f;    vertices[16].y = -0.5f;    vertices[16].z = 0.5f;
-    vertices[16].r = 255;        vertices[16].g = 255;        vertices[16].b = 255;
-    vertices[16].u = 0.75f;    vertices[16].v = 0.333f;
-    vertices[16].nx = -1.0f;       vertices[16].ny = 0.0f;       vertices[16].nz = 0.0f;
-
-    vertices[17].x = 0.5f;    vertices[17].y = 0.5f;    vertices[17].z = 0.5f;
-    vertices[17].r = 255;        vertices[17].g = 255;        vertices[17].b = 255;
-    vertices[17].u = 0.75f;    vertices[17].v = 0.666f;
-    vertices[17].nx = -1.0f;       vertices[17].ny = 0.0f;       vertices[17].nz = 0.0f;
-    
-    vertices[18].x = -0.5f;    vertices[18].y = 0.5f;    vertices[18].z = -0.5f;
-    vertices[18].r = 255;        vertices[18].g = 255;        vertices[18].b = 255;
-    vertices[18].u = 0.0f;    vertices[18].v = 0.666f;
-    vertices[18].nx = -1.0f;       vertices[18].ny = 0.0f;       vertices[18].nz = 0.0f;
-
-    vertices[19].x = -0.5f;    vertices[19].y = -0.5f;    vertices[19].z = -0.5f;
-    vertices[19].r = 255;        vertices[19].g = 255;        vertices[19].b = 255;
-    vertices[19].u = 0.0f;    vertices[19].v = 0.333f;
-    vertices[19].nx = -1.0f;       vertices[19].ny = 0.0f;       vertices[19].nz = 0.0f;
-
-    vertices[20].x = -0.5f;    vertices[20].y = -0.5f;    vertices[20].z = 0.5f;
-    vertices[20].r = 255;        vertices[20].g = 255;        vertices[20].b = 255;
-    vertices[20].u = 0.25f;    vertices[20].v = 0.333f;
-    vertices[20].nx = -1.0f;       vertices[20].ny = 0.0f;       vertices[20].nz = 0.0f;
-
-    vertices[21].x = -0.5f;    vertices[21].y = 0.5f;    vertices[21].z = -0.5f;
-    vertices[21].r = 255;        vertices[21].g = 255;        vertices[21].b = 255;
-    vertices[21].u = 0.0f;    vertices[21].v = 0.666f;
-    vertices[21].nx = -1.0f;       vertices[21].ny = 0.0f;       vertices[21].nz = 0.0f;
-
-    vertices[22].x = -0.5f;    vertices[22].y = -0.5f;    vertices[22].z = 0.5f;
-    vertices[22].r = 255;        vertices[22].g = 255;        vertices[22].b = 255;
-    vertices[22].u = 0.25f;    vertices[22].v = 0.333f;
-    vertices[22].nx = -1.0f;       vertices[22].ny = 0.0f;       vertices[22].nz = 0.0f;
-
-    vertices[23].x = -0.5f;    vertices[23].y = 0.5f;    vertices[23].z = 0.5f;
-    vertices[23].r = 255;        vertices[23].g = 255;        vertices[23].b = 255;
-    vertices[23].u = 0.25f;    vertices[23].v = 0.666f;
-    vertices[23].nx = -1.0f;       vertices[23].ny = 0.0f;       vertices[23].nz = 0.0f;
-    
-    vertices[24].x = -0.5f;    vertices[24].y = -0.5f;    vertices[24].z = 0.5f;
-    vertices[24].r = 255;        vertices[24].g = 255;        vertices[24].b = 255;
-    vertices[24].u = 0.25f;    vertices[24].v = 0.333f;
-    vertices[24].nx = 0.0f;       vertices[24].ny = -1.0f;       vertices[24].nz = 0.0f;
-    
-    vertices[25].x = -0.5f;    vertices[25].y = -0.5f;    vertices[25].z = -0.5f;
-    vertices[25].r = 255;        vertices[25].g = 255;        vertices[25].b = 255;
-    vertices[25].u = 0.25f;    vertices[25].v = 0.0f;
-    vertices[25].nx = 0.0f;       vertices[25].ny = -1.0f;       vertices[25].nz = 0.0f;
-    
-    vertices[26].x = 0.5f;    vertices[26].y = -0.5f;    vertices[26].z = -0.5f;
-    vertices[26].r = 255;        vertices[26].g = 255;        vertices[26].b = 255;
-    vertices[26].u = 0.5f;    vertices[26].v = 0.0f;
-    vertices[26].nx = 0.0f;       vertices[26].ny = -1.0f;       vertices[26].nz = 0.0f;
-    
-    vertices[27].x = -0.5f;    vertices[27].y = -0.5f;    vertices[27].z = 0.5f;
-    vertices[27].r = 255;        vertices[27].g = 255;        vertices[27].b = 255;
-    vertices[27].u = 0.25f;    vertices[27].v = 0.333f;
-    vertices[27].nx = 0.0f;       vertices[27].ny = -1.0f;       vertices[27].nz = 0.0f;
-    
-    vertices[28].x = 0.5f;    vertices[28].y = -0.5f;    vertices[28].z = -0.5f;
-    vertices[28].r = 255;        vertices[28].g = 255;        vertices[28].b = 255;
-    vertices[28].u = 0.5f;    vertices[28].v = 0.0f;
-    vertices[28].nx = 0.0f;       vertices[28].ny = -1.0f;       vertices[28].nz = 0.0f;
-    
-    vertices[29].x = 0.5f;    vertices[29].y = -0.5f;    vertices[29].z = 0.5f;
-    vertices[29].r = 255;        vertices[29].g = 255;        vertices[29].b = 255;
-    vertices[29].u = 0.5f;    vertices[29].v = 0.333f;
-    vertices[29].nx = 0.0f;       vertices[29].ny = -1.0f;       vertices[29].nz = 0.0f;
-    
-    vertices[30].x = -0.5f;    vertices[30].y = 0.5f;    vertices[30].z = 0.5f;
-    vertices[30].r = 255;        vertices[30].g = 255;        vertices[30].b = 255;
-    vertices[30].u = 0.25f;    vertices[30].v = 1.0f;
-    vertices[30].nx = 0.0f;       vertices[30].ny = -1.0f;       vertices[30].nz = 0.0f;
-    
-    vertices[31].x = -0.5f;    vertices[31].y = 0.5f;    vertices[31].z = -0.5f;
-    vertices[31].r = 255;        vertices[31].g = 255;        vertices[31].b = 255;
-    vertices[31].u = 0.25f;    vertices[31].v = 0.666f;
-    vertices[31].nx = 0.0f;       vertices[31].ny = -1.0f;       vertices[31].nz = 0.0f;
-    
-    vertices[32].x = 0.5f;    vertices[32].y = 0.5f;    vertices[32].z = -0.5f;
-    vertices[32].r = 255;        vertices[32].g = 255;        vertices[32].b = 255;
-    vertices[32].u = 0.5f;    vertices[32].v = 0.666f;
-    vertices[32].nx = 0.0f;       vertices[32].ny = -1.0f;       vertices[32].nz = 0.0f;
-    
-    vertices[33].x = -0.5f;    vertices[33].y = 0.5f;    vertices[33].z = 0.5f;
-    vertices[33].r = 255;        vertices[33].g = 255;        vertices[33].b = 255;
-    vertices[33].u = 0.25f;    vertices[33].v = 1.0f;
-    vertices[33].nx = 0.0f;       vertices[33].ny = -1.0f;       vertices[33].nz = 0.0f;
-    
-    vertices[34].x = 0.5f;    vertices[34].y = 0.5f;    vertices[34].z = -0.5f;
-    vertices[34].r = 255;        vertices[34].g = 255;        vertices[34].b = 255;
-    vertices[34].u = 0.5f;    vertices[34].v = 0.666f;
-    vertices[34].nx = 0.0f;       vertices[34].ny = -1.0f;       vertices[34].nz = 0.0f;
-    
-    vertices[35].x = 0.5f;    vertices[35].y = 0.5f;    vertices[35].z = 0.5f;
-    vertices[35].r = 255;        vertices[35].g = 255;        vertices[35].b = 255;
-    vertices[35].u = 0.5f;    vertices[35].v = 1.0f;
-    vertices[35].nx = 0.0f;       vertices[35].ny = -1.0f;       vertices[35].nz = 0.0f;
-    
+    vertices[0].u = 0.25f;      vertices[0].v = 0.666f;
+    vertices[0].nx = 0.0f;      vertices[0].ny = 0.0f;      vertices[0].nz = 1.0f;
 
 //    glm::mat4 mat = glm::mat4(1.0f);
 //    mat = glm::rotate(mat, (float)glfwGetTime(), glm::vec3(.0f, 1.0f, 0.0f));
