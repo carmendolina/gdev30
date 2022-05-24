@@ -146,7 +146,19 @@ int main()
     }
 
     // --- Vertex specification ---
-    glm::vec3 v0 = glm::vec3(0,-golden,0.5);
+    glm::vec3 v0 = glm::vec3(0.0f,-golden,0.5f);
+    glm::vec3 v1 = glm::vec3(-golden,-0.5f,0.0f);
+    glm::vec3 v2 = glm::vec3(0.0f,-golden,-0.5f);
+    glm::vec3 v3 = glm::vec3(golden,-0.5f,0.0f);
+    glm::vec3 v4 = glm::vec3(0.5f,0.0f,golden);
+    glm::vec3 v5 = glm::vec3(-0.5f,0.0f,golden);
+
+    glm::vec3 v6 = glm::vec3(0.0f,golden,-0.5f);
+    glm::vec3 v7 = glm::vec3(0.5f,0.0f,-golden);
+    glm::vec3 v8 = glm::vec3(-0.5f,0.0f,-golden);
+    glm::vec3 v9 = glm::vec3(-golden,0.5f, 0.0f);
+    glm::vec3 v10 = glm::vec3(0.0f,golden,0.5f);
+    glm::vec3 v11 = glm::vec3(golden,0.5f,0.0f);
     
     // Set up the data for each vertex of the triangle
     Vertex vertices[60];
