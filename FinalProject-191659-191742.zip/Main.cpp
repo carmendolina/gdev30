@@ -63,6 +63,7 @@ struct Vertex
 
 //float rotvar = sin(glfwGetTime());
 //float increment = 0.0f;
+int current = 0;
 int n = 1;
 float rotateVar = 0.0f;
 float golden = ((1+sqrt(5))/2)/2;
@@ -127,7 +128,7 @@ int main()
     // Tell GLFW to create a window
     int windowWidth = 800;
     int windowHeight = 800;
-    GLFWwindow* window = glfwCreateWindow(windowWidth, windowHeight, "Lighting", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(windowWidth, windowHeight, "Final Project", nullptr, nullptr);
     if (window == nullptr)
     {
         std::cerr << "Failed to create GLFW window!" << std::endl;
@@ -1261,7 +1262,7 @@ int main()
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_REPEAT);
 
         // Upload the image data to GPU memory
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, imageWidth, imageHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, imageData);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth, imageHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
 
         // If we set minification to use mipmaps, we can tell OpenGL to generate the mipmaps for us
         //glGenerateMipmap(GL_TEXTURE_2D);
@@ -1278,6 +1279,8 @@ int main()
     
     
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
+    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE);
     // Render loop
     while (!glfwWindowShouldClose(window))
     {
@@ -1295,9 +1298,9 @@ int main()
 //        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexOrder), indexOrder, GL_STATIC_DRAW);
         
         // Bind tex0 to texture unit 0, and set our tex0 uniform to texture unit 0
-//        glActiveTexture(GL_TEXTURE0);
-//        glBindTexture(GL_TEXTURE_2D, tex0);
-//        glUniform1i(glGetUniformLocation(program, "tex0"), tex0);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, tex0);
+        glUniform1i(glGetUniformLocation(program, "tex0"), current);
         
         // cube 1
         
@@ -1327,7 +1330,7 @@ int main()
         glm::mat4 mat = glm::mat4(1.0f);
         mat = glm::translate(mat, glm::vec3(-0.5f, 0.0f, -0.0f));
 //        mat = glm::rotate(mat, (float)glfwGetTime(), glm::vec3(1.0f, 1.0f, 1.0f));
-        mat = glm::rotate(mat, rotateVar, glm::vec3(0.0f, 1.0f, 1.0f));
+        mat = glm::rotate(mat, (float)glfwGetTime(), glm::vec3(1.0f, 1.0f, 1.0f));
         mat = glm::scale(mat, glm::vec3(0.8f, 0.8f, 0.8f));
         
         glm::mat4 view; // position, target, up

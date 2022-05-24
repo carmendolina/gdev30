@@ -51,5 +51,8 @@ void main()
     vec3 specular = matlSpecular * (spec * lightColor);
     
     vec3 result = (ambient + diffuse + specular) * outColor;
-    fragColor = texture(tex0, outUV) * vec4(result, 1.0);
+    
+    vec4 texColor = texture(tex0, outUV);
+    
+    fragColor = texColor * vec4(result, 1.0);
 }
