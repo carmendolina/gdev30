@@ -63,20 +63,26 @@ struct Vertex
 
 //float rotvar = sin(glfwGetTime());
 //float increment = 0.0f;
-int current = 0;
+int n = 1;
+float rotateVar = 0.0f;
 float golden = ((1+sqrt(5))/2)/2;
 //
-//void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
-//{
-//    if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
-//    {
-//        if (current == 0) {
-//            current = 1;
-//        } else if (current == 1) {
-//            current = 0;
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+    if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
+    {
+//        glfwSetTime(5.0f);
+//        while (glfwGetTime() < 7.0f) {
+//            rotateVar = (float)glfwGetTime();
 //        }
-//    }
-//
+//        glfwSetTime(0.0f);
+        if (rotateVar == (float)glfwGetTime()) {
+            rotateVar = 0.0f;
+        } else {
+            rotateVar = (float)glfwGetTime();
+        }
+    }
+
 //    if (key == GLFW_KEY_RIGHT && action == GLFW_PRESS)
 //    {
 //        if (increment != 1.0f) {
@@ -90,7 +96,7 @@ float golden = ((1+sqrt(5))/2)/2;
 //            increment -= 0.2f;
 //        }
 //    }
-//}
+}
 
 
 
@@ -136,7 +142,7 @@ int main()
     glfwSetFramebufferSizeCallback(window, FramebufferSizeChangedCallback);
     
     // Register the callback function that handles keyboard input
-//    glfwSetKeyCallback(window, key_callback);
+    glfwSetKeyCallback(window, key_callback);
 
     // Tell GLAD to load the OpenGL function pointers
     if (!gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress)))
@@ -190,42 +196,42 @@ int main()
         normalt15, normalt16, normalt17, normalt18, normalt19
     };
     
-    glm::vec3 sumv0 = normalt0+normalt1+normalt2+normalt3+normalt4;
-    float l_sumv0 = sqrt((sumv0[0]*sumv0[0]) + (sumv0[1]*sumv0[1]) + (sumv0[2]*sumv0[2]));
-    glm::vec3 normalv0 = sumv0 / l_sumv0;
-
-    glm::vec3 sumv1 = normalt0+normalt4+normalt10+normalt18+normalt19;
-    glm::vec3 normalv1 = sumv1 / l_sumv0;
-
-    glm::vec3 sumv2 = normalt0+normalt1+normalt10+normalt11+normalt12;
-    glm::vec3 normalv2 = sumv2 / l_sumv0;
-
-    glm::vec3 sumv3 = normalt1+normalt2+normalt12+normalt13+normalt14;
-    glm::vec3 normalv3 = sumv3 / l_sumv0;
-
-    glm::vec3 sumv4 = normalt2+normalt3+normalt14+normalt15+normalt16;
-    glm::vec3 normalv4 = sumv4 / l_sumv0;
-
-    glm::vec3 sumv5 = normalt3+normalt4+normalt16+normalt17+normalt18;
-    glm::vec3 normalv5 = sumv5 / l_sumv0;
-
-    glm::vec3 sumv6 = normalt5+normalt6+normalt7+normalt8+normalt9;
-    glm::vec3 normalv6 = sumv6 / l_sumv0;
-
-    glm::vec3 sumv7 = normalt5+normalt9+normalt11+normalt12+normalt13;
-    glm::vec3 normalv7 = sumv7 / l_sumv0;
-
-    glm::vec3 sumv8 = normalt5+normalt6+normalt10+normalt11+normalt19;
-    glm::vec3 normalv8 = sumv8 / l_sumv0;
-
-    glm::vec3 sumv9 = normalt6+normalt7+normalt17+normalt18+normalt19;
-    glm::vec3 normalv9 = sumv9 / l_sumv0;
-
-    glm::vec3 sumv10 = normalt7+normalt8+normalt15+normalt16+normalt17;
-    glm::vec3 normalv10 = sumv10 / l_sumv0;
-
-    glm::vec3 sumv11 = normalt8+normalt9+normalt13+normalt14+normalt15;
-    glm::vec3 normalv11 = sumv11 / l_sumv0;
+//    glm::vec3 sumv0 = normalt0+normalt1+normalt2+normalt3+normalt4;
+//    float l_sumv0 = sqrt((sumv0[0]*sumv0[0]) + (sumv0[1]*sumv0[1]) + (sumv0[2]*sumv0[2]));
+//    glm::vec3 normalv0 = sumv0 / l_sumv0;
+//
+//    glm::vec3 sumv1 = normalt0+normalt4+normalt10+normalt18+normalt19;
+//    glm::vec3 normalv1 = sumv1 / l_sumv0;
+//
+//    glm::vec3 sumv2 = normalt0+normalt1+normalt10+normalt11+normalt12;
+//    glm::vec3 normalv2 = sumv2 / l_sumv0;
+//
+//    glm::vec3 sumv3 = normalt1+normalt2+normalt12+normalt13+normalt14;
+//    glm::vec3 normalv3 = sumv3 / l_sumv0;
+//
+//    glm::vec3 sumv4 = normalt2+normalt3+normalt14+normalt15+normalt16;
+//    glm::vec3 normalv4 = sumv4 / l_sumv0;
+//
+//    glm::vec3 sumv5 = normalt3+normalt4+normalt16+normalt17+normalt18;
+//    glm::vec3 normalv5 = sumv5 / l_sumv0;
+//
+//    glm::vec3 sumv6 = normalt5+normalt6+normalt7+normalt8+normalt9;
+//    glm::vec3 normalv6 = sumv6 / l_sumv0;
+//
+//    glm::vec3 sumv7 = normalt5+normalt9+normalt11+normalt12+normalt13;
+//    glm::vec3 normalv7 = sumv7 / l_sumv0;
+//
+//    glm::vec3 sumv8 = normalt5+normalt6+normalt10+normalt11+normalt19;
+//    glm::vec3 normalv8 = sumv8 / l_sumv0;
+//
+//    glm::vec3 sumv9 = normalt6+normalt7+normalt17+normalt18+normalt19;
+//    glm::vec3 normalv9 = sumv9 / l_sumv0;
+//
+//    glm::vec3 sumv10 = normalt7+normalt8+normalt15+normalt16+normalt17;
+//    glm::vec3 normalv10 = sumv10 / l_sumv0;
+//
+//    glm::vec3 sumv11 = normalt8+normalt9+normalt13+normalt14+normalt15;
+//    glm::vec3 normalv11 = sumv11 / l_sumv0;
     
 //    glm::vec3 normalArray [12] {
 //        normalv0, normalv1, normalv2, normalv3, normalv4, normalv5,
@@ -236,7 +242,8 @@ int main()
     Vertex vertices[60];
     
     // t0 - 18 on the die
-    // indices 0, 1, 2
+    // indices 0, 1, 2 (change vecArray[i][constant])
+
     vertices[0].x = vecArray[0][0];
     vertices[0].y = vecArray[0][1];
     vertices[0].z = vecArray[0][2];
@@ -249,17 +256,771 @@ int main()
     vertices[0].ny = 0.0f;
     vertices[0].nz = 0.0f;
     
-    vertices[0].x = vecArray[0][0];
-    vertices[0].y = vecArray[0][1];
-    vertices[0].z = vecArray[0][2];
-    vertices[0].r = 255;
-    vertices[0].g = 255;
-    vertices[0].b = 255;
-    vertices[0].u = 0.0f;
-    vertices[0].v = 0.0f;
-    vertices[0].nx = 0.0f;
-    vertices[0].ny = 0.0f;
-    vertices[0].nz = 0.0f;
+    vertices[1].x = vecArray[1][0];
+    vertices[1].y = vecArray[1][1];
+    vertices[1].z = vecArray[1][2];
+    vertices[1].r = 255;
+    vertices[1].g = 255;
+    vertices[1].b = 255;
+    vertices[1].u = 0.0f;
+    vertices[1].v = 0.0f;
+    vertices[1].nx = 0.0f;
+    vertices[1].ny = 0.0f;
+    vertices[1].nz = 0.0f;
+
+    vertices[2].x = vecArray[2][0];
+    vertices[2].y = vecArray[2][1];
+    vertices[2].z = vecArray[2][2];
+    vertices[2].r = 255;
+    vertices[2].g = 255;
+    vertices[2].b = 255;
+    vertices[2].u = 0.0f;
+    vertices[2].v = 0.0f;
+    vertices[2].nx = 0.0f;
+    vertices[2].ny = 0.0f;
+    vertices[2].nz = 0.0f;
+
+    // t1 - 4 on the die
+    // indices 0, 2, 3 (change vecArray[i][constant])
+    
+    vertices[3].x = vecArray[0][0];
+    vertices[3].y = vecArray[0][1];
+    vertices[3].z = vecArray[0][2];
+    vertices[3].r = 255;
+    vertices[3].g = 255;
+    vertices[3].b = 255;
+    vertices[3].u = 0.0f;
+    vertices[3].v = 0.0f;
+    vertices[3].nx = 0.0f;
+    vertices[3].ny = 0.0f;
+    vertices[3].nz = 0.0f;
+    
+    vertices[4].x = vecArray[2][0];
+    vertices[4].y = vecArray[2][1];
+    vertices[4].z = vecArray[2][2];
+    vertices[4].r = 255;
+    vertices[4].g = 255;
+    vertices[4].b = 255;
+    vertices[4].u = 0.0f;
+    vertices[4].v = 0.0f;
+    vertices[4].nx = 0.0f;
+    vertices[4].ny = 0.0f;
+    vertices[4].nz = 0.0f;
+
+    vertices[5].x = vecArray[3][0];
+    vertices[5].y = vecArray[3][1];
+    vertices[5].z = vecArray[3][2];
+    vertices[5].r = 255;
+    vertices[5].g = 255;
+    vertices[5].b = 255;
+    vertices[5].u = 0.0f;
+    vertices[5].v = 0.0f;
+    vertices[5].nx = 0.0f;
+    vertices[5].ny = 0.0f;
+    vertices[5].nz = 0.0f;
+
+    // t2 - 11 on the die
+    // indices 0, 3, 4 (change vecArray[i][constant])
+    
+    vertices[6].x = vecArray[0][0];
+    vertices[6].y = vecArray[0][1];
+    vertices[6].z = vecArray[0][2];
+    vertices[6].r = 255;
+    vertices[6].g = 255;
+    vertices[6].b = 255;
+    vertices[6].u = 0.0f;
+    vertices[6].v = 0.0f;
+    vertices[6].nx = 0.0f;
+    vertices[6].ny = 0.0f;
+    vertices[6].nz = 0.0f;
+    
+    vertices[7].x = vecArray[3][0];
+    vertices[7].y = vecArray[3][1];
+    vertices[7].z = vecArray[3][2];
+    vertices[7].r = 255;
+    vertices[7].g = 255;
+    vertices[7].b = 255;
+    vertices[7].u = 0.0f;
+    vertices[7].v = 0.0f;
+    vertices[7].nx = 0.0f;
+    vertices[7].ny = 0.0f;
+    vertices[7].nz = 0.0f;
+
+    vertices[8].x = vecArray[4][0];
+    vertices[8].y = vecArray[4][1];
+    vertices[8].z = vecArray[4][2];
+    vertices[8].r = 255;
+    vertices[8].g = 255;
+    vertices[8].b = 255;
+    vertices[8].u = 0.0f;
+    vertices[8].v = 0.0f;
+    vertices[8].nx = 0.0f;
+    vertices[8].ny = 0.0f;
+    vertices[8].nz = 0.0f;
+
+    // t3 - 13 on the die
+    // indices 0, 4, 5 (change vecArray[i][constant])
+    
+    vertices[9].x = vecArray[0][0];
+    vertices[9].y = vecArray[0][1];
+    vertices[9].z = vecArray[0][2];
+    vertices[9].r = 255;
+    vertices[9].g = 255;
+    vertices[9].b = 255;
+    vertices[9].u = 0.0f;
+    vertices[9].v = 0.0f;
+    vertices[9].nx = 0.0f;
+    vertices[9].ny = 0.0f;
+    vertices[9].nz = 0.0f;
+    
+    vertices[10].x = vecArray[4][0];
+    vertices[10].y = vecArray[4][1];
+    vertices[10].z = vecArray[4][2];
+    vertices[10].r = 255;
+    vertices[10].g = 255;
+    vertices[10].b = 255;
+    vertices[10].u = 0.0f;
+    vertices[10].v = 0.0f;
+    vertices[10].nx = 0.0f;
+    vertices[10].ny = 0.0f;
+    vertices[10].nz = 0.0f;
+
+    vertices[11].x = vecArray[5][0];
+    vertices[11].y = vecArray[5][1];
+    vertices[11].z = vecArray[5][2];
+    vertices[11].r = 255;
+    vertices[11].g = 255;
+    vertices[11].b = 255;
+    vertices[11].u = 0.0f;
+    vertices[11].v = 0.0f;
+    vertices[11].nx = 0.0f;
+    vertices[11].ny = 0.0f;
+    vertices[11].nz = 0.0f;
+
+    // t4 - 5 on the die
+    // indices 0, 5, 1
+    
+    vertices[12].x = vecArray[0][0];
+    vertices[12].y = vecArray[0][1];
+    vertices[12].z = vecArray[0][2];
+    vertices[12].r = 255;
+    vertices[12].g = 255;
+    vertices[12].b = 255;
+    vertices[12].u = 0.0f;
+    vertices[12].v = 0.0f;
+    vertices[12].nx = 0.0f;
+    vertices[12].ny = 0.0f;
+    vertices[12].nz = 0.0f;
+    
+    vertices[13].x = vecArray[5][0];
+    vertices[13].y = vecArray[5][1];
+    vertices[13].z = vecArray[5][2];
+    vertices[13].r = 255;
+    vertices[13].g = 255;
+    vertices[13].b = 255;
+    vertices[13].u = 0.0f;
+    vertices[13].v = 0.0f;
+    vertices[13].nx = 0.0f;
+    vertices[13].ny = 0.0f;
+    vertices[13].nz = 0.0f;
+
+    vertices[14].x = vecArray[1][0];
+    vertices[14].y = vecArray[1][1];
+    vertices[14].z = vecArray[1][2];
+    vertices[14].r = 255;
+    vertices[14].g = 255;
+    vertices[14].b = 255;
+    vertices[14].u = 0.0f;
+    vertices[14].v = 0.0f;
+    vertices[14].nx = 0.0f;
+    vertices[14].ny = 0.0f;
+    vertices[14].nz = 0.0f;
+
+    // t5 - 8 on the die
+    // indices 6, 7, 8
+
+    vertices[15].x = vecArray[6][0];
+    vertices[15].y = vecArray[6][1];
+    vertices[15].z = vecArray[6][2];
+    vertices[15].r = 255;
+    vertices[15].g = 255;
+    vertices[15].b = 255;
+    vertices[15].u = 0.0f;
+    vertices[15].v = 0.0f;
+    vertices[15].nx = 0.0f;
+    vertices[15].ny = 0.0f;
+    vertices[15].nz = 0.0f;
+    
+    vertices[16].x = vecArray[7][0];
+    vertices[16].y = vecArray[7][1];
+    vertices[16].z = vecArray[7][2];
+    vertices[16].r = 255;
+    vertices[16].g = 255;
+    vertices[16].b = 255;
+    vertices[16].u = 0.0f;
+    vertices[16].v = 0.0f;
+    vertices[16].nx = 0.0f;
+    vertices[16].ny = 0.0f;
+    vertices[16].nz = 0.0f;
+
+    vertices[17].x = vecArray[8][0];
+    vertices[17].y = vecArray[8][1];
+    vertices[17].z = vecArray[8][2];
+    vertices[17].r = 255;
+    vertices[17].g = 255;
+    vertices[17].b = 255;
+    vertices[17].u = 0.0f;
+    vertices[17].v = 0.0f;
+    vertices[17].nx = 0.0f;
+    vertices[17].ny = 0.0f;
+    vertices[17].nz = 0.0f;
+
+    // t6 - 10 on the die
+    // indices 6, 8, 9
+
+    vertices[18].x = vecArray[6][0];
+    vertices[18].y = vecArray[6][1];
+    vertices[18].z = vecArray[6][2];
+    vertices[18].r = 255;
+    vertices[18].g = 255;
+    vertices[18].b = 255;
+    vertices[18].u = 0.0f;
+    vertices[18].v = 0.0f;
+    vertices[18].nx = 0.0f;
+    vertices[18].ny = 0.0f;
+    vertices[18].nz = 0.0f;
+    
+    vertices[19].x = vecArray[8][0];
+    vertices[19].y = vecArray[8][1];
+    vertices[19].z = vecArray[8][2];
+    vertices[19].r = 255;
+    vertices[19].g = 255;
+    vertices[19].b = 255;
+    vertices[19].u = 0.0f;
+    vertices[19].v = 0.0f;
+    vertices[19].nx = 0.0f;
+    vertices[19].ny = 0.0f;
+    vertices[19].nz = 0.0f;
+
+    vertices[20].x = vecArray[9][0];
+    vertices[20].y = vecArray[9][1];
+    vertices[20].z = vecArray[9][2];
+    vertices[20].r = 255;
+    vertices[20].g = 255;
+    vertices[20].b = 255;
+    vertices[20].u = 0.0f;
+    vertices[20].v = 0.0f;
+    vertices[20].nx = 0.0f;
+    vertices[20].ny = 0.0f;
+    vertices[20].nz = 0.0f;
+
+    // t7 - 17 on the die
+    // indices 6, 9, 10
+
+    vertices[21].x = vecArray[6][0];
+    vertices[21].y = vecArray[6][1];
+    vertices[21].z = vecArray[6][2];
+    vertices[21].r = 255;
+    vertices[21].g = 255;
+    vertices[21].b = 255;
+    vertices[21].u = 0.0f;
+    vertices[21].v = 0.0f;
+    vertices[21].nx = 0.0f;
+    vertices[21].ny = 0.0f;
+    vertices[21].nz = 0.0f;
+    
+    vertices[22].x = vecArray[9][0];
+    vertices[22].y = vecArray[9][1];
+    vertices[22].z = vecArray[9][2];
+    vertices[22].r = 255;
+    vertices[22].g = 255;
+    vertices[22].b = 255;
+    vertices[22].u = 0.0f;
+    vertices[22].v = 0.0f;
+    vertices[22].nx = 0.0f;
+    vertices[22].ny = 0.0f;
+    vertices[22].nz = 0.0f;
+
+    vertices[23].x = vecArray[10][0];
+    vertices[23].y = vecArray[10][1];
+    vertices[23].z = vecArray[10][2];
+    vertices[23].r = 255;
+    vertices[23].g = 255;
+    vertices[23].b = 255;
+    vertices[23].u = 0.0f;
+    vertices[23].v = 0.0f;
+    vertices[23].nx = 0.0f;
+    vertices[23].ny = 0.0f;
+    vertices[23].nz = 0.0f;
+
+    // t8 - 3 on the die
+    // indices 6, 10, 11
+
+    vertices[24].x = vecArray[6][0];
+    vertices[24].y = vecArray[6][1];
+    vertices[24].z = vecArray[6][2];
+    vertices[24].r = 255;
+    vertices[24].g = 255;
+    vertices[24].b = 255;
+    vertices[24].u = 0.0f;
+    vertices[24].v = 0.0f;
+    vertices[24].nx = 0.0f;
+    vertices[24].ny = 0.0f;
+    vertices[24].nz = 0.0f;
+    
+    vertices[25].x = vecArray[10][0];
+    vertices[25].y = vecArray[10][1];
+    vertices[25].z = vecArray[10][2];
+    vertices[25].r = 255;
+    vertices[25].g = 255;
+    vertices[25].b = 255;
+    vertices[25].u = 0.0f;
+    vertices[25].v = 0.0f;
+    vertices[25].nx = 0.0f;
+    vertices[25].ny = 0.0f;
+    vertices[25].nz = 0.0f;
+
+    vertices[26].x = vecArray[11][0];
+    vertices[26].y = vecArray[11][1];
+    vertices[26].z = vecArray[11][2];
+    vertices[26].r = 255;
+    vertices[26].g = 255;
+    vertices[26].b = 255;
+    vertices[26].u = 0.0f;
+    vertices[26].v = 0.0f;
+    vertices[26].nx = 0.0f;
+    vertices[26].ny = 0.0f;
+    vertices[26].nz = 0.0f;
+
+    // t9 - 16 on the die
+    // indices 6, 11, 7
+
+    vertices[27].x = vecArray[6][0];
+    vertices[27].y = vecArray[6][1];
+    vertices[27].z = vecArray[6][2];
+    vertices[27].r = 255;
+    vertices[27].g = 255;
+    vertices[27].b = 255;
+    vertices[27].u = 0.0f;
+    vertices[27].v = 0.0f;
+    vertices[27].nx = 0.0f;
+    vertices[27].ny = 0.0f;
+    vertices[27].nz = 0.0f;
+    
+    vertices[28].x = vecArray[11][0];
+    vertices[28].y = vecArray[11][1];
+    vertices[28].z = vecArray[11][2];
+    vertices[28].r = 255;
+    vertices[28].g = 255;
+    vertices[28].b = 255;
+    vertices[28].u = 0.0f;
+    vertices[28].v = 0.0f;
+    vertices[28].nx = 0.0f;
+    vertices[28].ny = 0.0f;
+    vertices[28].nz = 0.0f;
+
+    vertices[29].x = vecArray[7][0];
+    vertices[29].y = vecArray[7][1];
+    vertices[29].z = vecArray[7][2];
+    vertices[29].r = 255;
+    vertices[29].g = 255;
+    vertices[29].b = 255;
+    vertices[29].u = 0.0f;
+    vertices[29].v = 0.0f;
+    vertices[29].nx = 0.0f;
+    vertices[29].ny = 0.0f;
+    vertices[29].nz = 0.0f;
+
+    // t10 - 2 on the die
+    // indices 1, 8, 2
+
+    vertices[30].x = vecArray[1][0];
+    vertices[30].y = vecArray[1][1];
+    vertices[30].z = vecArray[1][2];
+    vertices[30].r = 255;
+    vertices[30].g = 255;
+    vertices[30].b = 255;
+    vertices[30].u = 0.0f;
+    vertices[30].v = 0.0f;
+    vertices[30].nx = 0.0f;
+    vertices[30].ny = 0.0f;
+    vertices[30].nz = 0.0f;
+    
+    vertices[31].x = vecArray[8][0];
+    vertices[31].y = vecArray[8][1];
+    vertices[31].z = vecArray[8][2];
+    vertices[31].r = 255;
+    vertices[31].g = 255;
+    vertices[31].b = 255;
+    vertices[31].u = 0.0f;
+    vertices[31].v = 0.0f;
+    vertices[31].nx = 0.0f;
+    vertices[31].ny = 0.0f;
+    vertices[31].nz = 0.0f;
+
+    vertices[32].x = vecArray[2][0];
+    vertices[32].y = vecArray[2][1];
+    vertices[32].z = vecArray[2][2];
+    vertices[32].r = 255;
+    vertices[32].g = 255;
+    vertices[32].b = 255;
+    vertices[32].u = 0.0f;
+    vertices[32].v = 0.0f;
+    vertices[32].nx = 0.0f;
+    vertices[32].ny = 0.0f;
+    vertices[32].nz = 0.0f;
+
+    // t11 - 20 on the die
+    // indices 2, 8, 7
+
+    vertices[33].x = vecArray[2][0];
+    vertices[33].y = vecArray[2][1];
+    vertices[33].z = vecArray[2][2];
+    vertices[33].r = 255;
+    vertices[33].g = 255;
+    vertices[33].b = 255;
+    vertices[33].u = 0.0f;
+    vertices[33].v = 0.0f;
+    vertices[33].nx = 0.0f;
+    vertices[33].ny = 0.0f;
+    vertices[33].nz = 0.0f;
+    
+    vertices[34].x = vecArray[8][0];
+    vertices[34].y = vecArray[8][1];
+    vertices[34].z = vecArray[8][2];
+    vertices[34].r = 255;
+    vertices[34].g = 255;
+    vertices[34].b = 255;
+    vertices[34].u = 0.0f;
+    vertices[34].v = 0.0f;
+    vertices[34].nx = 0.0f;
+    vertices[34].ny = 0.0f;
+    vertices[34].nz = 0.0f;
+
+    vertices[35].x = vecArray[7][0];
+    vertices[35].y = vecArray[7][1];
+    vertices[35].z = vecArray[7][2];
+    vertices[35].r = 255;
+    vertices[35].g = 255;
+    vertices[35].b = 255;
+    vertices[35].u = 0.0f;
+    vertices[35].v = 0.0f;
+    vertices[35].nx = 0.0f;
+    vertices[35].ny = 0.0f;
+    vertices[35].nz = 0.0f;
+
+    // t12 - 14 on the die
+    // indices 2, 7, 3
+
+    vertices[36].x = vecArray[2][0];
+    vertices[36].y = vecArray[2][1];
+    vertices[36].z = vecArray[2][2];
+    vertices[36].r = 255;
+    vertices[36].g = 255;
+    vertices[36].b = 255;
+    vertices[36].u = 0.0f;
+    vertices[36].v = 0.0f;
+    vertices[36].nx = 0.0f;
+    vertices[36].ny = 0.0f;
+    vertices[36].nz = 0.0f;
+    
+    vertices[37].x = vecArray[7][0];
+    vertices[37].y = vecArray[7][1];
+    vertices[37].z = vecArray[7][2];
+    vertices[37].r = 255;
+    vertices[37].g = 255;
+    vertices[37].b = 255;
+    vertices[37].u = 0.0f;
+    vertices[37].v = 0.0f;
+    vertices[37].nx = 0.0f;
+    vertices[37].ny = 0.0f;
+    vertices[37].nz = 0.0f;
+
+    vertices[38].x = vecArray[3][0];
+    vertices[38].y = vecArray[3][1];
+    vertices[38].z = vecArray[3][2];
+    vertices[38].r = 255;
+    vertices[38].g = 255;
+    vertices[38].b = 255;
+    vertices[38].u = 0.0f;
+    vertices[38].v = 0.0f;
+    vertices[38].nx = 0.0f;
+    vertices[38].ny = 0.0f;
+    vertices[38].nz = 0.0f;
+
+    // t13 - 6 on the die
+    // indices 3, 7, 11
+
+    vertices[39].x = vecArray[3][0];
+    vertices[39].y = vecArray[3][1];
+    vertices[39].z = vecArray[3][2];
+    vertices[39].r = 255;
+    vertices[39].g = 255;
+    vertices[39].b = 255;
+    vertices[39].u = 0.0f;
+    vertices[39].v = 0.0f;
+    vertices[39].nx = 0.0f;
+    vertices[39].ny = 0.0f;
+    vertices[39].nz = 0.0f;
+    
+    vertices[40].x = vecArray[7][0];
+    vertices[40].y = vecArray[7][1];
+    vertices[40].z = vecArray[7][2];
+    vertices[40].r = 255;
+    vertices[40].g = 255;
+    vertices[40].b = 255;
+    vertices[40].u = 0.0f;
+    vertices[40].v = 0.0f;
+    vertices[40].nx = 0.0f;
+    vertices[40].ny = 0.0f;
+    vertices[40].nz = 0.0f;
+
+    vertices[41].x = vecArray[11][0];
+    vertices[41].y = vecArray[11][1];
+    vertices[41].z = vecArray[11][2];
+    vertices[41].r = 255;
+    vertices[41].g = 255;
+    vertices[41].b = 255;
+    vertices[41].u = 0.0f;
+    vertices[41].v = 0.0f;
+    vertices[41].nx = 0.0f;
+    vertices[41].ny = 0.0f;
+    vertices[41].nz = 0.0f;
+
+    // t14 - 9 on the die
+    // indices 3, 11, 4
+
+    vertices[42].x = vecArray[3][0];
+    vertices[42].y = vecArray[3][1];
+    vertices[42].z = vecArray[3][2];
+    vertices[42].r = 255;
+    vertices[42].g = 255;
+    vertices[42].b = 255;
+    vertices[42].u = 0.0f;
+    vertices[42].v = 0.0f;
+    vertices[42].nx = 0.0f;
+    vertices[42].ny = 0.0f;
+    vertices[42].nz = 0.0f;
+    
+    vertices[43].x = vecArray[11][0];
+    vertices[43].y = vecArray[11][1];
+    vertices[43].z = vecArray[11][2];
+    vertices[43].r = 255;
+    vertices[43].g = 255;
+    vertices[43].b = 255;
+    vertices[43].u = 0.0f;
+    vertices[43].v = 0.0f;
+    vertices[43].nx = 0.0f;
+    vertices[43].ny = 0.0f;
+    vertices[43].nz = 0.0f;
+
+    vertices[44].x = vecArray[4][0];
+    vertices[44].y = vecArray[4][1];
+    vertices[44].z = vecArray[4][2];
+    vertices[44].r = 255;
+    vertices[44].g = 255;
+    vertices[44].b = 255;
+    vertices[44].u = 0.0f;
+    vertices[44].v = 0.0f;
+    vertices[44].nx = 0.0f;
+    vertices[44].ny = 0.0f;
+    vertices[44].nz = 0.0f;
+
+    // t15 - 19 on the die
+    // indices 4, 11, 10
+
+    vertices[45].x = vecArray[4][0];
+    vertices[45].y = vecArray[4][1];
+    vertices[45].z = vecArray[4][2];
+    vertices[45].r = 255;
+    vertices[45].g = 255;
+    vertices[45].b = 255;
+    vertices[45].u = 0.0f;
+    vertices[45].v = 0.0f;
+    vertices[45].nx = 0.0f;
+    vertices[45].ny = 0.0f;
+    vertices[45].nz = 0.0f;
+    
+    vertices[46].x = vecArray[11][0];
+    vertices[46].y = vecArray[11][1];
+    vertices[46].z = vecArray[11][2];
+    vertices[46].r = 255;
+    vertices[46].g = 255;
+    vertices[46].b = 255;
+    vertices[46].u = 0.0f;
+    vertices[46].v = 0.0f;
+    vertices[46].nx = 0.0f;
+    vertices[46].ny = 0.0f;
+    vertices[46].nz = 0.0f;
+
+    vertices[47].x = vecArray[10][0];
+    vertices[47].y = vecArray[10][1];
+    vertices[47].z = vecArray[10][2];
+    vertices[47].r = 255;
+    vertices[47].g = 255;
+    vertices[47].b = 255;
+    vertices[47].u = 0.0f;
+    vertices[47].v = 0.0f;
+    vertices[47].nx = 0.0f;
+    vertices[47].ny = 0.0f;
+    vertices[47].nz = 0.0f;
+
+    // t16 - 1 on the die
+    // indices 4, 10, 5
+
+    vertices[48].x = vecArray[4][0];
+    vertices[48].y = vecArray[4][1];
+    vertices[48].z = vecArray[4][2];
+    vertices[48].r = 255;
+    vertices[48].g = 255;
+    vertices[48].b = 255;
+    vertices[48].u = 0.0f;
+    vertices[48].v = 0.0f;
+    vertices[48].nx = 0.0f;
+    vertices[48].ny = 0.0f;
+    vertices[48].nz = 0.0f;
+    
+    vertices[49].x = vecArray[10][0];
+    vertices[49].y = vecArray[10][1];
+    vertices[49].z = vecArray[10][2];
+    vertices[49].r = 255;
+    vertices[49].g = 255;
+    vertices[49].b = 255;
+    vertices[49].u = 0.0f;
+    vertices[49].v = 0.0f;
+    vertices[49].nx = 0.0f;
+    vertices[49].ny = 0.0f;
+    vertices[49].nz = 0.0f;
+
+    vertices[50].x = vecArray[5][0];
+    vertices[50].y = vecArray[5][1];
+    vertices[50].z = vecArray[5][2];
+    vertices[50].r = 255;
+    vertices[50].g = 255;
+    vertices[50].b = 255;
+    vertices[50].u = 0.0f;
+    vertices[50].v = 0.0f;
+    vertices[50].nx = 0.0f;
+    vertices[50].ny = 0.0f;
+    vertices[50].nz = 0.0f;
+
+    // t17 - 7 on the die
+    // indices 5, 10, 9
+
+    vertices[51].x = vecArray[5][0];
+    vertices[51].y = vecArray[5][1];
+    vertices[51].z = vecArray[5][2];
+    vertices[51].r = 255;
+    vertices[51].g = 255;
+    vertices[51].b = 255;
+    vertices[51].u = 0.0f;
+    vertices[51].v = 0.0f;
+    vertices[51].nx = 0.0f;
+    vertices[51].ny = 0.0f;
+    vertices[51].nz = 0.0f;
+    
+    vertices[52].x = vecArray[10][0];
+    vertices[52].y = vecArray[10][1];
+    vertices[52].z = vecArray[10][2];
+    vertices[52].r = 255;
+    vertices[52].g = 255;
+    vertices[52].b = 255;
+    vertices[52].u = 0.0f;
+    vertices[52].v = 0.0f;
+    vertices[52].nx = 0.0f;
+    vertices[52].ny = 0.0f;
+    vertices[52].nz = 0.0f;
+
+    vertices[53].x = vecArray[9][0];
+    vertices[53].y = vecArray[9][1];
+    vertices[53].z = vecArray[9][2];
+    vertices[53].r = 255;
+    vertices[53].g = 255;
+    vertices[53].b = 255;
+    vertices[53].u = 0.0f;
+    vertices[53].v = 0.0f;
+    vertices[53].nx = 0.0f;
+    vertices[53].ny = 0.0f;
+    vertices[53].nz = 0.0f;
+
+    // t18 - 15 on the die
+    // indices 5, 9, 1
+
+    vertices[54].x = vecArray[5][0];
+    vertices[54].y = vecArray[5][1];
+    vertices[54].z = vecArray[5][2];
+    vertices[54].r = 255;
+    vertices[54].g = 255;
+    vertices[54].b = 255;
+    vertices[54].u = 0.0f;
+    vertices[54].v = 0.0f;
+    vertices[54].nx = 0.0f;
+    vertices[54].ny = 0.0f;
+    vertices[54].nz = 0.0f;
+    
+    vertices[55].x = vecArray[9][0];
+    vertices[55].y = vecArray[9][1];
+    vertices[55].z = vecArray[9][2];
+    vertices[55].r = 255;
+    vertices[55].g = 255;
+    vertices[55].b = 255;
+    vertices[55].u = 0.0f;
+    vertices[55].v = 0.0f;
+    vertices[55].nx = 0.0f;
+    vertices[55].ny = 0.0f;
+    vertices[55].nz = 0.0f;
+
+    vertices[56].x = vecArray[1][0];
+    vertices[56].y = vecArray[1][1];
+    vertices[56].z = vecArray[1][2];
+    vertices[56].r = 255;
+    vertices[56].g = 255;
+    vertices[56].b = 255;
+    vertices[56].u = 0.0f;
+    vertices[56].v = 0.0f;
+    vertices[56].nx = 0.0f;
+    vertices[56].ny = 0.0f;
+    vertices[56].nz = 0.0f;
+
+    // t19 - 12 on the die
+    // indices 1, 9, 8
+
+    vertices[57].x = vecArray[1][0];
+    vertices[57].y = vecArray[1][1];
+    vertices[57].z = vecArray[1][2];
+    vertices[57].r = 255;
+    vertices[57].g = 255;
+    vertices[57].b = 255;
+    vertices[57].u = 0.0f;
+    vertices[57].v = 0.0f;
+    vertices[57].nx = 0.0f;
+    vertices[57].ny = 0.0f;
+    vertices[57].nz = 0.0f;
+    
+    vertices[58].x = vecArray[9][0];
+    vertices[58].y = vecArray[9][1];
+    vertices[58].z = vecArray[9][2];
+    vertices[58].r = 255;
+    vertices[58].g = 255;
+    vertices[58].b = 255;
+    vertices[58].u = 0.0f;
+    vertices[58].v = 0.0f;
+    vertices[58].nx = 0.0f;
+    vertices[58].ny = 0.0f;
+    vertices[58].nz = 0.0f;
+
+    vertices[59].x = vecArray[8][0];
+    vertices[59].y = vecArray[8][1];
+    vertices[59].z = vecArray[8][2];
+    vertices[59].r = 255;
+    vertices[59].g = 255;
+    vertices[59].b = 255;
+    vertices[59].u = 0.0f;
+    vertices[59].v = 0.0f;
+    vertices[59].nx = 0.0f;
+    vertices[59].ny = 0.0f;
+    vertices[59].nz = 0.0f;
+
     
     for (int i = 0; i < 3; i++) {
         vertices[i].nx = normalFaces[0][0];
@@ -530,13 +1291,13 @@ int main()
         // Use the vertex array object that we created
         glBindVertexArray(vao);
         
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexOrder), indexOrder, GL_STATIC_DRAW);
+//        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
+//        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexOrder), indexOrder, GL_STATIC_DRAW);
         
         // Bind tex0 to texture unit 0, and set our tex0 uniform to texture unit 0
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, tex0);
-        glUniform1i(glGetUniformLocation(program, "tex0"), current);
+//        glActiveTexture(GL_TEXTURE0);
+//        glBindTexture(GL_TEXTURE_2D, tex0);
+//        glUniform1i(glGetUniformLocation(program, "tex0"), tex0);
         
         // cube 1
         
@@ -545,7 +1306,7 @@ int main()
 //        glm::vec3 lightPos = glm::vec3(-30.0f, -10.0f, -30.0f);
         glUniform3fv(glGetUniformLocation(program, "lightPos"), 1, glm::value_ptr(lightPos));
         
-        glm::vec3 lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
+        glm::vec3 lightColor = glm::vec3(1.0f, 0.8f, 0.9f);
         glUniform3fv(glGetUniformLocation(program, "lightColor"), 1, glm::value_ptr(lightColor));
         
         glm::vec3 ambientLight = 0.1f * lightColor;
@@ -561,9 +1322,12 @@ int main()
         glUniform3fv(glGetUniformLocation(program, "matlSpecular"), 1, glm::value_ptr(matlSpecular));
         glUniform1f(glGetUniformLocation(program, "matlShiny"), matlShiny);
         
+        rotateVar = 0.0f;
+        
         glm::mat4 mat = glm::mat4(1.0f);
         mat = glm::translate(mat, glm::vec3(-0.5f, 0.0f, -0.0f));
-        mat = glm::rotate(mat, (float)glfwGetTime(), glm::vec3(0.0f, 1.0f, 1.0f));
+//        mat = glm::rotate(mat, (float)glfwGetTime(), glm::vec3(1.0f, 1.0f, 1.0f));
+        mat = glm::rotate(mat, rotateVar, glm::vec3(0.0f, 1.0f, 1.0f));
         mat = glm::scale(mat, glm::vec3(0.8f, 0.8f, 0.8f));
         
         glm::mat4 view; // position, target, up
@@ -590,9 +1354,9 @@ int main()
         glBindVertexArray(vao);
 
         // Draw the 3 vertices using triangle primitives
-//        glDrawArrays(GL_TRIANGLE_FAN, 0, 6);
+        glDrawArrays(GL_TRIANGLES, 0, 60);
 //        glDrawArrays(GL_TRIANGLE_FAN, 6, 6);
-        glDrawElements(GL_TRIANGLES, 60, GL_UNSIGNED_INT, 0);
+//        glDrawElements(GL_TRIANGLES, 60, GL_UNSIGNED_INT, 0);
         
         // step 6 - cube 2
         
