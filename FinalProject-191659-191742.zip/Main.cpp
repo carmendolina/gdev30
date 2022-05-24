@@ -159,6 +159,27 @@ int main()
     glm::vec3 v9 = glm::vec3(-golden,0.5f, 0.0f);
     glm::vec3 v10 = glm::vec3(0.0f,golden,0.5f);
     glm::vec3 v11 = glm::vec3(golden,0.5f,0.0f);
+
+    glm::vec3 normalt0 = cross((v0-v1),(v1-v2));
+    glm::vec3 normalt1 = cross((v0-v2),(v2-v3));
+    glm::vec3 normalt2 = cross((v0-v3),(v3-v4));
+    glm::vec3 normalt3 = cross((v0-v4),(v4-v5));
+    glm::vec3 normalt4 = cross((v0-v5),(v5-v1));
+    glm::vec3 normalt5 = cross((v6-v7),(v7-v8));
+    glm::vec3 normalt6 = cross((v6-v8),(v8-v9));
+    glm::vec3 normalt7 = cross((v6-v9),(v9-v10));
+    glm::vec3 normalt8 = cross((v6-v10),(v10-v11));
+    glm::vec3 normalt9 = cross((v6-v11),(v11-v7));
+    glm::vec3 normalt10 = cross((v1-v8),(v8-v2));
+    glm::vec3 normalt11 = cross((v2-v8),(v8-v7));
+    glm::vec3 normalt12 = cross((v2-v7),(v7-v3));
+    glm::vec3 normalt13 = cross((v3-v7),(v7-v11));
+    glm::vec3 normalt14 = cross((v3-v11),(v11-v4));
+    glm::vec3 normalt15 = cross((v4-v11),(v11-v10));
+    glm::vec3 normalt16 = cross((v4-v10),(v10-v5));
+    glm::vec3 normalt17 = cross((v5-v10),(v10-v9));
+    glm::vec3 normalt18 = cross((v5-v9),(v9-v1));
+    glm::vec3 normalt19 = cross((v1-v9),(v9-v8));
     
     // Set up the data for each vertex of the triangle
     Vertex vertices[60];
