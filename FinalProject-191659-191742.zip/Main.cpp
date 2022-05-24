@@ -146,19 +146,21 @@ int main()
     }
 
     // --- Vertex specification ---
+    
     glm::vec3 v0 = glm::vec3(0.0f,-golden,0.5f);
     glm::vec3 v1 = glm::vec3(-golden,-0.5f,0.0f);
     glm::vec3 v2 = glm::vec3(0.0f,-golden,-0.5f);
     glm::vec3 v3 = glm::vec3(golden,-0.5f,0.0f);
     glm::vec3 v4 = glm::vec3(0.5f,0.0f,golden);
     glm::vec3 v5 = glm::vec3(-0.5f,0.0f,golden);
-
     glm::vec3 v6 = glm::vec3(0.0f,golden,-0.5f);
     glm::vec3 v7 = glm::vec3(0.5f,0.0f,-golden);
     glm::vec3 v8 = glm::vec3(-0.5f,0.0f,-golden);
     glm::vec3 v9 = glm::vec3(-golden,0.5f, 0.0f);
     glm::vec3 v10 = glm::vec3(0.0f,golden,0.5f);
     glm::vec3 v11 = glm::vec3(golden,0.5f,0.0f);
+    
+    glm::vec3 vecArray [12] = { v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11 };
 
     glm::vec3 normalt0 = cross((v0-v1),(v1-v2));
     glm::vec3 normalt1 = cross((v0-v2),(v2-v3));
@@ -181,14 +183,119 @@ int main()
     glm::vec3 normalt18 = cross((v5-v9),(v9-v1));
     glm::vec3 normalt19 = cross((v1-v9),(v9-v8));
     
+    glm::vec3 normalFaces [20] = {
+        normalt0, normalt1, normalt2, normalt3, normalt4,
+        normalt5, normalt6, normalt7, normalt8, normalt9,
+        normalt10, normalt11, normalt12, normalt13, normalt14,
+        normalt15, normalt16, normalt17, normalt18, normalt19
+    };
+    
+    glm::vec3 sumv0 = normalt0+normalt1+normalt2+normalt3+normalt4;
+    float l_sumv0 = sqrt((sumv0[0]*sumv0[0]) + (sumv0[1]*sumv0[1]) + (sumv0[2]*sumv0[2]));
+    glm::vec3 normalv0 = sumv0 / l_sumv0;
+
+    glm::vec3 sumv1 = normalt0+normalt4+normalt10+normalt18+normalt19;
+    glm::vec3 normalv1 = sumv1 / l_sumv0;
+
+    glm::vec3 sumv2 = normalt0+normalt1+normalt10+normalt11+normalt12;
+    glm::vec3 normalv2 = sumv2 / l_sumv0;
+
+    glm::vec3 sumv3 = normalt1+normalt2+normalt12+normalt13+normalt14;
+    glm::vec3 normalv3 = sumv3 / l_sumv0;
+
+    glm::vec3 sumv4 = normalt2+normalt3+normalt14+normalt15+normalt16;
+    glm::vec3 normalv4 = sumv4 / l_sumv0;
+
+    glm::vec3 sumv5 = normalt3+normalt4+normalt16+normalt17+normalt18;
+    glm::vec3 normalv5 = sumv5 / l_sumv0;
+
+    glm::vec3 sumv6 = normalt5+normalt6+normalt7+normalt8+normalt9;
+    glm::vec3 normalv6 = sumv6 / l_sumv0;
+
+    glm::vec3 sumv7 = normalt5+normalt9+normalt11+normalt12+normalt13;
+    glm::vec3 normalv7 = sumv7 / l_sumv0;
+
+    glm::vec3 sumv8 = normalt5+normalt6+normalt10+normalt11+normalt19;
+    glm::vec3 normalv8 = sumv8 / l_sumv0;
+
+    glm::vec3 sumv9 = normalt6+normalt7+normalt17+normalt18+normalt19;
+    glm::vec3 normalv9 = sumv9 / l_sumv0;
+
+    glm::vec3 sumv10 = normalt7+normalt8+normalt15+normalt16+normalt17;
+    glm::vec3 normalv10 = sumv10 / l_sumv0;
+
+    glm::vec3 sumv11 = normalt8+normalt9+normalt13+normalt14+normalt15;
+    glm::vec3 normalv11 = sumv11 / l_sumv0;
+    
+    glm::vec3 normalArray [12] {
+        normalv0, normalv1, normalv2, normalv3, normalv4, normalv5,
+        normalv6, normalv7, normalv8, normalv9, normalv10, normalv11
+    };
+    
     // Set up the data for each vertex of the triangle
     Vertex vertices[60];
     
     // center point of top triangle fan
-    vertices[0].x = 0.5f;       vertices[0].y = 0.0f;       vertices[0].z = golden;
-    vertices[0].r = 255;        vertices[0].g = 255;        vertices[0].b = 255;
-    vertices[0].u = 0.25f;      vertices[0].v = 0.666f;
-    vertices[0].nx = 0.0f;      vertices[0].ny = 0.0f;      vertices[0].nz = 1.0f;
+//    vertices[0].x = vecArray[0][0];
+//    vertices[0].y = vecArray[0][1];
+//    vertices[0].z = vecArray[0][2];
+//    vertices[0].r = 255;
+//    vertices[0].g = 255;
+//    vertices[0].b = 255;
+//    vertices[0].u = 0.25f;
+//    vertices[0].v = 0.666f;
+//    vertices[0].nx = normalArray[0][0];
+//    vertices[0].ny = normalArray[0][1];
+//    vertices[0].nz = normalArray[0][2];
+    
+    for (int i = 0; i < 12; i++) {
+        vertices[i].x = vecArray[i][0];
+        vertices[i].y = vecArray[i][1];
+        vertices[i].z = vecArray[i][2];
+        vertices[i].r = 255;
+        vertices[i].g = 255;
+        vertices[i].b = 255;
+        vertices[i].u = 0.0f;
+        vertices[i].v = 0.0f;
+        vertices[i].nx = normalArray[i][0];
+        vertices[i].ny = normalArray[i][1];
+        vertices[i].nz = normalArray[i][2];
+        std::cout << i << " " << vertices[i].nx << " " << vertices[i].ny << " " << vertices[i].nz << std::endl;
+    };
+
+    
+    GLuint indexOrder[] = {
+        // store the index order of drawing
+        // indeces use up A LOT LESS memory than duplicates
+        0, 1, 2,
+        0, 2, 3,
+        0, 3, 4,
+        0, 4, 5,
+        0, 5, 1,
+        6, 7, 8,
+        6, 8, 9,
+        6, 9, 10,
+        6, 10, 11,
+        6, 11, 7,
+        1, 8, 2,
+        2, 8, 7,
+        2, 7, 3,
+        3, 7, 11,
+        3, 11, 4,
+        4, 11, 10,
+        4, 10, 5,
+        5, 10, 9,
+        5, 9, 1,
+        1, 9, 8
+    };
+    
+    GLuint elementbuffer;
+    glGenBuffers(1, &elementbuffer);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER,
+                 sizeof(indexOrder) * sizeof(unsigned int),
+                 &indexOrder[0], GL_STATIC_DRAW
+    );
 
 //    glm::mat4 mat = glm::mat4(1.0f);
 //    mat = glm::rotate(mat, (float)glfwGetTime(), glm::vec3(.0f, 1.0f, 0.0f));
@@ -308,6 +415,9 @@ int main()
         // Use the vertex array object that we created
         glBindVertexArray(vao);
         
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexOrder), indexOrder, GL_STATIC_DRAW);
+        
         // Bind tex0 to texture unit 0, and set our tex0 uniform to texture unit 0
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, tex0);
@@ -316,8 +426,8 @@ int main()
         // cube 1
         
         
-//        glm::vec3 lightPos = glm::vec3(8.0f, -7.0f, -17.0f);
-        glm::vec3 lightPos = glm::vec3(20.0f, -10.0f, -30.0f);
+        glm::vec3 lightPos = glm::vec3(2.0f, 0.0f, -20.0f);
+//        glm::vec3 lightPos = glm::vec3(-30.0f, -10.0f, -30.0f);
         glUniform3fv(glGetUniformLocation(program, "lightPos"), 1, glm::value_ptr(lightPos));
         
         glm::vec3 lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
@@ -326,7 +436,7 @@ int main()
         glm::vec3 ambientLight = 0.1f * lightColor;
         glUniform3fv(glGetUniformLocation(program, "ambientLight"), 1, glm::value_ptr(ambientLight));
         
-        glm::vec3 matlAmbient = glm::vec3(0.3f, 0.3f, 0.3f);
+        glm::vec3 matlAmbient = glm::vec3(0.1f, 0.1f, 0.1f);
         glm::vec3 matlDiffuse = glm::vec3(0.2f, 0.2f, 0.2f);
         glm::vec3 matlSpecular = glm::vec3(2.0f, 2.0f, 2.0f);
         float matlShiny = 1.5f;
@@ -339,14 +449,15 @@ int main()
         glm::mat4 mat = glm::mat4(1.0f);
         mat = glm::translate(mat, glm::vec3(-0.5f, 0.0f, -0.0f));
         mat = glm::rotate(mat, (float)glfwGetTime(), glm::vec3(0.0f, 1.0f, 1.0f));
-        mat = glm::scale(mat, glm::vec3(0.5f, 0.5f, 0.5f));
+        mat = glm::scale(mat, glm::vec3(0.8f, 0.8f, 0.8f));
         
         glm::mat4 view; // position, target, up
         view = glm::lookAt(glm::vec3(0.5f, 0.0f, 1.25f),
                      glm::vec3(0.0f, 0.0f, 0.0f),
                      glm::vec3(0.0f, 1.0f, 0.0f));
-        
-        glm::mat4 persp = glm::perspective(90.0f, 1.0f, 0.1f, 100.0f);
+//
+        glm::mat4 persp = glm::mat4(1.0f);
+        persp = glm::perspective(90.0f, 1.0f, 0.1f, 100.0f);
         
         mat = persp * view * mat;
         
@@ -364,97 +475,99 @@ int main()
         glBindVertexArray(vao);
 
         // Draw the 3 vertices using triangle primitives
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+//        glDrawArrays(GL_TRIANGLE_FAN, 0, 6);
+//        glDrawArrays(GL_TRIANGLE_FAN, 6, 6);
+        glDrawElements(GL_TRIANGLES, 60, GL_UNSIGNED_INT, 0);
         
         // step 6 - cube 2
         
-        glBindVertexArray(0);
-        glBindVertexArray(vao);
-        
-        glm::mat4 mat1 = glm::mat4(1.0f);
-        mat1 = glm::translate(mat1, glm::vec3(0.3f, -0.4f, -0.5f));
-        mat1 = glm::rotate(mat1, (float)glfwGetTime(), glm::vec3(1.0f, 0.0f, 0.0f));
-        mat1 = glm::scale(mat1, glm::vec3(0.3f, 0.3f, 0.3f));
-        
-        mat1 = persp * view * mat1;
-        
-        glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat1));
-        
-        glm::mat4 nmat1 = transpose(inverse(mat1));
-        glUniformMatrix4fv(nmuniformLocation, 1, GL_FALSE, glm::value_ptr(nmat1));
-
-        // Draw the 3 vertices using triangle primitives
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-        
-        // step 6 - cube 3
-        
-        glBindVertexArray(0);
-        glBindVertexArray(vao);
-        
-        glm::mat4 mat2 = glm::mat4(1.0f);
-        mat2 = glm::translate(mat2, glm::vec3(1.0f, 0.4f, -1.0f));
-        mat2 = glm::rotate(mat2, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
-        mat2 = glm::scale(mat2, glm::vec3(0.3f, 0.3f, 0.3f));
-        
-        mat2 = persp * view * mat2;
-        
-        glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat2));
-        
-        glm::mat4 nmat2 = transpose(inverse(mat2));
-        glUniformMatrix4fv(nmuniformLocation, 1, GL_FALSE, glm::value_ptr(nmat2));
-
-        // Draw the 3 vertices using triangle primitives
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-        
-        // revolving cube around origin
-        
-        glBindVertexArray(0);
-        glBindVertexArray(vao);
-        
-        float radius = 0.8f;
-        float lookX = sin(glfwGetTime()) * radius;
-        float lookZ = cos(glfwGetTime()) * radius;
-        
-        glm::mat4 mat3 = glm::mat4(1.0f);
-        mat3 = glm::translate(mat3, glm::vec3(lookX, 0.0f, lookZ));
-        mat3 = glm::rotate(mat3, (float)glfwGetTime(), glm::vec3(1.0f, 0.0f, 0.0f));
-        mat3 = glm::scale(mat3, glm::vec3(0.1f, 0.1f, 0.1f));
-        
-        mat3 = persp * view * mat3;
-        
-        glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat3));
-        
-        glm::mat4 nmat3 = transpose(inverse(mat3));
-        glUniformMatrix4fv(nmuniformLocation, 1, GL_FALSE, glm::value_ptr(nmat3));
-
-        // Draw the 3 vertices using triangle primitives
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-        
-        // revolving cube around another cube
-        
-        glBindVertexArray(0);
-        glBindVertexArray(vao);
-        
-        radius = 0.4f;
-        // values gotten from translation matrix of step 6 - cube 3
-        // add x, y, z components to lookX, y, and lookZ
-        lookX = sin(glfwGetTime()) * radius + 1.0f;
-        lookZ = cos(glfwGetTime()) * radius - 1.0f;
-        
-        glm::mat4 mat4 = glm::mat4(1.0f);
-        mat4 = glm::translate(mat4, glm::vec3(lookX, 0.4f, lookZ));
-        mat4 = glm::rotate(mat4, (float)glfwGetTime(), glm::vec3(1.0f, 0.0f, 0.0f));
-        mat4 = glm::scale(mat4, glm::vec3(0.1f, 0.1f, 0.1f));
-        
-        mat4 = persp * view * mat4;
-        
-        glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat4));
-        
-        glm::mat4 nmat4 = transpose(inverse(mat4));
-        glUniformMatrix4fv(nmuniformLocation, 1, GL_FALSE, glm::value_ptr(nmat4));
-
-        // Draw the 3 vertices using triangle primitives
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+//        glBindVertexArray(0);
+//        glBindVertexArray(vao);
+//
+//        glm::mat4 mat1 = glm::mat4(1.0f);
+//        mat1 = glm::translate(mat1, glm::vec3(0.3f, -0.4f, -0.5f));
+//        mat1 = glm::rotate(mat1, (float)glfwGetTime(), glm::vec3(1.0f, 0.0f, 0.0f));
+//        mat1 = glm::scale(mat1, glm::vec3(0.3f, 0.3f, 0.3f));
+//
+//        mat1 = persp * view * mat1;
+//
+//        glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat1));
+//
+//        glm::mat4 nmat1 = transpose(inverse(mat1));
+//        glUniformMatrix4fv(nmuniformLocation, 1, GL_FALSE, glm::value_ptr(nmat1));
+//
+//        // Draw the 3 vertices using triangle primitives
+//        glDrawArrays(GL_TRIANGLES, 0, 36);
+//
+//        // step 6 - cube 3
+//
+//        glBindVertexArray(0);
+//        glBindVertexArray(vao);
+//
+//        glm::mat4 mat2 = glm::mat4(1.0f);
+//        mat2 = glm::translate(mat2, glm::vec3(1.0f, 0.4f, -1.0f));
+//        mat2 = glm::rotate(mat2, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+//        mat2 = glm::scale(mat2, glm::vec3(0.3f, 0.3f, 0.3f));
+//
+//        mat2 = persp * view * mat2;
+//
+//        glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat2));
+//
+//        glm::mat4 nmat2 = transpose(inverse(mat2));
+//        glUniformMatrix4fv(nmuniformLocation, 1, GL_FALSE, glm::value_ptr(nmat2));
+//
+//        // Draw the 3 vertices using triangle primitives
+//        glDrawArrays(GL_TRIANGLES, 0, 36);
+//
+//        // revolving cube around origin
+//
+//        glBindVertexArray(0);
+//        glBindVertexArray(vao);
+//
+//        float radius = 0.8f;
+//        float lookX = sin(glfwGetTime()) * radius;
+//        float lookZ = cos(glfwGetTime()) * radius;
+//
+//        glm::mat4 mat3 = glm::mat4(1.0f);
+//        mat3 = glm::translate(mat3, glm::vec3(lookX, 0.0f, lookZ));
+//        mat3 = glm::rotate(mat3, (float)glfwGetTime(), glm::vec3(1.0f, 0.0f, 0.0f));
+//        mat3 = glm::scale(mat3, glm::vec3(0.1f, 0.1f, 0.1f));
+//
+//        mat3 = persp * view * mat3;
+//
+//        glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat3));
+//
+//        glm::mat4 nmat3 = transpose(inverse(mat3));
+//        glUniformMatrix4fv(nmuniformLocation, 1, GL_FALSE, glm::value_ptr(nmat3));
+//
+//        // Draw the 3 vertices using triangle primitives
+//        glDrawArrays(GL_TRIANGLES, 0, 36);
+//
+//        // revolving cube around another cube
+//
+//        glBindVertexArray(0);
+//        glBindVertexArray(vao);
+//
+//        radius = 0.4f;
+//        // values gotten from translation matrix of step 6 - cube 3
+//        // add x, y, z components to lookX, y, and lookZ
+//        lookX = sin(glfwGetTime()) * radius + 1.0f;
+//        lookZ = cos(glfwGetTime()) * radius - 1.0f;
+//
+//        glm::mat4 mat4 = glm::mat4(1.0f);
+//        mat4 = glm::translate(mat4, glm::vec3(lookX, 0.4f, lookZ));
+//        mat4 = glm::rotate(mat4, (float)glfwGetTime(), glm::vec3(1.0f, 0.0f, 0.0f));
+//        mat4 = glm::scale(mat4, glm::vec3(0.1f, 0.1f, 0.1f));
+//
+//        mat4 = persp * view * mat4;
+//
+//        glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat4));
+//
+//        glm::mat4 nmat4 = transpose(inverse(mat4));
+//        glUniformMatrix4fv(nmuniformLocation, 1, GL_FALSE, glm::value_ptr(nmat4));
+//
+//        // Draw the 3 vertices using triangle primitives
+//        glDrawArrays(GL_TRIANGLES, 0, 36);
 
         // "Unuse" the vertex array object
         glBindVertexArray(0);
