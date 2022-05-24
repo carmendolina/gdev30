@@ -227,41 +227,156 @@ int main()
     glm::vec3 sumv11 = normalt8+normalt9+normalt13+normalt14+normalt15;
     glm::vec3 normalv11 = sumv11 / l_sumv0;
     
-    glm::vec3 normalArray [12] {
-        normalv0, normalv1, normalv2, normalv3, normalv4, normalv5,
-        normalv6, normalv7, normalv8, normalv9, normalv10, normalv11
-    };
+//    glm::vec3 normalArray [12] {
+//        normalv0, normalv1, normalv2, normalv3, normalv4, normalv5,
+//        normalv6, normalv7, normalv8, normalv9, normalv10, normalv11
+//    };
     
     // Set up the data for each vertex of the triangle
     Vertex vertices[60];
     
-    // center point of top triangle fan
-//    vertices[0].x = vecArray[0][0];
-//    vertices[0].y = vecArray[0][1];
-//    vertices[0].z = vecArray[0][2];
-//    vertices[0].r = 255;
-//    vertices[0].g = 255;
-//    vertices[0].b = 255;
-//    vertices[0].u = 0.25f;
-//    vertices[0].v = 0.666f;
-//    vertices[0].nx = normalArray[0][0];
-//    vertices[0].ny = normalArray[0][1];
-//    vertices[0].nz = normalArray[0][2];
+    // t0 - 18 on the die
+    // indices 0, 1, 2
+    vertices[0].x = vecArray[0][0];
+    vertices[0].y = vecArray[0][1];
+    vertices[0].z = vecArray[0][2];
+    vertices[0].r = 255;
+    vertices[0].g = 255;
+    vertices[0].b = 255;
+    vertices[0].u = 0.0f;
+    vertices[0].v = 0.0f;
+    vertices[0].nx = 0.0f;
+    vertices[0].ny = 0.0f;
+    vertices[0].nz = 0.0f;
     
-    for (int i = 0; i < 12; i++) {
-        vertices[i].x = vecArray[i][0];
-        vertices[i].y = vecArray[i][1];
-        vertices[i].z = vecArray[i][2];
-        vertices[i].r = 255;
-        vertices[i].g = 255;
-        vertices[i].b = 255;
-        vertices[i].u = 0.0f;
-        vertices[i].v = 0.0f;
-        vertices[i].nx = normalArray[i][0];
-        vertices[i].ny = normalArray[i][1];
-        vertices[i].nz = normalArray[i][2];
-        std::cout << i << " " << vertices[i].nx << " " << vertices[i].ny << " " << vertices[i].nz << std::endl;
+    vertices[0].x = vecArray[0][0];
+    vertices[0].y = vecArray[0][1];
+    vertices[0].z = vecArray[0][2];
+    vertices[0].r = 255;
+    vertices[0].g = 255;
+    vertices[0].b = 255;
+    vertices[0].u = 0.0f;
+    vertices[0].v = 0.0f;
+    vertices[0].nx = 0.0f;
+    vertices[0].ny = 0.0f;
+    vertices[0].nz = 0.0f;
+    
+    for (int i = 0; i < 3; i++) {
+        vertices[i].nx = normalFaces[0][0];
+        vertices[i].ny = normalFaces[0][1];
+        vertices[i].nz = normalFaces[0][2];
     };
+    for (int i = 3; i < 6; i++) {
+        vertices[i].nx = normalFaces[1][0];
+        vertices[i].ny = normalFaces[1][1];
+        vertices[i].nz = normalFaces[1][2];
+    };
+    for (int i = 6; i < 9; i++) {
+        vertices[i].nx = normalFaces[2][0];
+        vertices[i].ny = normalFaces[2][1];
+        vertices[i].nz = normalFaces[2][2];
+    };
+    for (int i = 9; i < 12; i++) {
+        vertices[i].nx = normalFaces[3][0];
+        vertices[i].ny = normalFaces[3][1];
+        vertices[i].nz = normalFaces[3][2];
+    };
+    for (int i = 12; i < 15; i++) {
+        vertices[i].nx = normalFaces[4][0];
+        vertices[i].ny = normalFaces[4][1];
+        vertices[i].nz = normalFaces[4][2];
+    };
+    for (int i = 15; i < 18; i++) {
+        vertices[i].nx = normalFaces[5][0];
+        vertices[i].ny = normalFaces[5][1];
+        vertices[i].nz = normalFaces[5][2];
+    };
+    for (int i = 18; i < 21; i++) {
+        vertices[i].nx = normalFaces[6][0];
+        vertices[i].ny = normalFaces[6][1];
+        vertices[i].nz = normalFaces[6][2];
+    };
+    for (int i = 21; i < 24; i++) {
+        vertices[i].nx = normalFaces[7][0];
+        vertices[i].ny = normalFaces[7][1];
+        vertices[i].nz = normalFaces[7][2];
+    };
+    for (int i = 24; i < 27; i++) {
+        vertices[i].nx = normalFaces[8][0];
+        vertices[i].ny = normalFaces[8][1];
+        vertices[i].nz = normalFaces[8][2];
+    };
+    for (int i = 27; i < 30; i++) {
+        vertices[i].nx = normalFaces[9][0];
+        vertices[i].ny = normalFaces[9][1];
+        vertices[i].nz = normalFaces[9][2];
+    };
+    for (int i = 30; i < 33; i++) {
+        vertices[i].nx = normalFaces[10][0];
+        vertices[i].ny = normalFaces[10][1];
+        vertices[i].nz = normalFaces[10][2];
+    };
+    for (int i = 33; i < 36; i++) {
+        vertices[i].nx = normalFaces[11][0];
+        vertices[i].ny = normalFaces[11][1];
+        vertices[i].nz = normalFaces[11][2];
+    };
+    for (int i = 36; i < 39; i++) {
+        vertices[i].nx = normalFaces[12][0];
+        vertices[i].ny = normalFaces[12][1];
+        vertices[i].nz = normalFaces[12][2];
+    };
+    for (int i = 39; i < 42; i++) {
+        vertices[i].nx = normalFaces[13][0];
+        vertices[i].ny = normalFaces[13][1];
+        vertices[i].nz = normalFaces[13][2];
+    };
+    for (int i = 42; i < 45; i++) {
+        vertices[i].nx = normalFaces[14][0];
+        vertices[i].ny = normalFaces[14][1];
+        vertices[i].nz = normalFaces[14][2];
+    };
+    for (int i = 45; i < 48; i++) {
+        vertices[i].nx = normalFaces[15][0];
+        vertices[i].ny = normalFaces[15][1];
+        vertices[i].nz = normalFaces[15][2];
+    };
+    for (int i = 48; i < 51; i++) {
+        vertices[i].nx = normalFaces[16][0];
+        vertices[i].ny = normalFaces[16][1];
+        vertices[i].nz = normalFaces[16][2];
+    };
+    for (int i = 51; i < 54; i++) {
+        vertices[i].nx = normalFaces[17][0];
+        vertices[i].ny = normalFaces[17][1];
+        vertices[i].nz = normalFaces[17][2];
+    };
+    for (int i = 54; i < 57; i++) {
+        vertices[i].nx = normalFaces[18][0];
+        vertices[i].ny = normalFaces[18][1];
+        vertices[i].nz = normalFaces[18][2];
+    };
+    for (int i = 57; i < 60; i++) {
+        vertices[i].nx = normalFaces[19][0];
+        vertices[i].ny = normalFaces[19][1];
+        vertices[i].nz = normalFaces[19][2];
+    };
+    
+    
+//    for (int i = 0; i < 12; i++) {
+//        vertices[i].x = vecArray[i][0];
+//        vertices[i].y = vecArray[i][1];
+//        vertices[i].z = vecArray[i][2];
+//        vertices[i].r = 255;
+//        vertices[i].g = 255;
+//        vertices[i].b = 255;
+//        vertices[i].u = vertices[i].u;
+//        vertices[i].v = vertices[i].v;
+//        vertices[i].nx = normalArray[i][0];
+//        vertices[i].ny = normalArray[i][1];
+//        vertices[i].nz = normalArray[i][2];
+//        std::cout << i << " " << vertices[i].nx << " " << vertices[i].ny << " " << vertices[i].nz << std::endl;
+//    };
 
     
     GLuint indexOrder[] = {
