@@ -1355,18 +1355,17 @@ int main()
         glBindTexture(GL_TEXTURE_2D, tex0);
         glUniform1i(glGetUniformLocation(program, "tex0"), 0);
         
+        // setting light values
         glm::vec3 lightPos = glm::vec3(-20.0f, 10.0f, -10.0f);
         glUniform3fv(glGetUniformLocation(program, "lightPos"), 1, glm::value_ptr(lightPos));
-
         glm::vec3 specularLight = glm::vec3(1.0f, 0.8f, 0.9f);
         glUniform3fv(glGetUniformLocation(program, "specularLight"), 1, glm::value_ptr(specularLight));
-        
         glm::vec3 diffuseLight = glm::vec3(0.9f, 0.8f, 0.6f);
         glUniform3fv(glGetUniformLocation(program, "diffuseLight"), 1, glm::value_ptr(diffuseLight));
-
         glm::vec3 ambientLight = 0.1f * specularLight;
         glUniform3fv(glGetUniformLocation(program, "ambientLight"), 1, glm::value_ptr(ambientLight));
 
+        // setting material values
         glm::vec3 matlAmbient = glm::vec3(0.1f, 0.1f, 0.1f);
         glm::vec3 matlDiffuse = glm::vec3(0.2f, 0.2f, 0.2f);
         glm::vec3 matlSpecular = glm::vec3(2.0f, 2.0f, 2.0f);
@@ -1377,6 +1376,7 @@ int main()
         glUniform3fv(glGetUniformLocation(program, "matlSpecular"), 1, glm::value_ptr(matlSpecular));
         glUniform1f(glGetUniformLocation(program, "matlShiny"), matlShiny);
 
+        // setting model matrix for transformations
         glm::mat4 mat = glm::mat4(1.0f);
         mat = glm::translate(mat, glm::vec3(-0.5f, 0.0f, -0.0f));
         mat = glm::rotate(mat, (float)glfwGetTime(), glm::vec3(1.0f, -1.0f, -1.0f));
