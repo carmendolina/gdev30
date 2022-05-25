@@ -244,6 +244,12 @@ int main()
     
     // t0 - 18 on the die
     // indices 0, 1, 2 (change vecArray[i][constant])
+    // 0 = pix 600, 95
+    // u, v = 0.0f, 0.667f
+    // 1 = pix 545.5, 0
+    // u, v = 0.909f, 1.0f
+    // 2 = pix 491, 95
+    // u, v = 0.818f, 0.667f
 
     vertices[0].x = vecArray[0][0];
     vertices[0].y = vecArray[0][1];
@@ -283,6 +289,12 @@ int main()
 
     // t1 - 4 on the die
     // indices 0, 2, 3 (change vecArray[i][constant])
+    // 0 = pix 600, 95
+    // u, v = 0.0f, 0.667f
+    // 2 = pix 491, 95
+    // u, v = 0.818f, 0.667f
+    // 3 = pix 545.5, 190
+    // u, v = 0.909f, 0.333f
     
     vertices[3].x = vecArray[0][0];
     vertices[3].y = vecArray[0][1];
@@ -322,6 +334,13 @@ int main()
 
     // t2 - 11 on the die
     // indices 0, 3, 4 (change vecArray[i][constant])
+    // 0 = pix 600, 95
+    // u, v = 0.0f, 0.667f
+    // 3 = pix 545.5, 190
+    // u, v = 0.909f, 0.333f
+    // 4 = pix 109.5, 190
+    // u, v = 0.1825f, 0.333f
+    
     
     vertices[6].x = vecArray[0][0];
     vertices[6].y = vecArray[0][1];
@@ -361,6 +380,12 @@ int main()
 
     // t3 - 13 on the die
     // indices 0, 4, 5 (change vecArray[i][constant])
+    // 0 = pix 600, 95
+    // u, v = 0.0f, 0.667f
+    // 4 = pix 109.5, 190
+    // u, v = 0.1825f, 0.333f
+    // 5 = pix 164, 95
+    // u, v = 0.273f, 0.667f
     
     vertices[9].x = vecArray[0][0];
     vertices[9].y = vecArray[0][1];
@@ -400,6 +425,12 @@ int main()
 
     // t4 - 5 on the die
     // indices 0, 5, 1
+    // 0 = pix 600, 95
+    // u, v = 0.0f, 0.667f
+    // 5 = pix 164, 95
+    // u, v = 0.273f, 0.667f
+    // 1 = pix 545.5, 0
+    // u, v = 0.909f, 1.0f
     
     vertices[12].x = vecArray[0][0];
     vertices[12].y = vecArray[0][1];
@@ -439,6 +470,12 @@ int main()
 
     // t5 - 8 on the die
     // indices 6, 7, 8
+    // 6 = pix 327.5, 190
+    // u, v = 0.546f, 0.333f
+    // 7 = pix 436.5, 190
+    // u, v = 0.7275f, 0.333f
+    // 8 = pix 382, 95
+    // u, v = 0.637f, 0.667f
 
     vertices[15].x = vecArray[6][0];
     vertices[15].y = vecArray[6][1];
@@ -478,6 +515,12 @@ int main()
 
     // t6 - 10 on the die
     // indices 6, 8, 9
+    // 6 = pix 327.5, 190
+    // u, v = 0.546f, 0.333f
+    // 8 = pix 382, 95
+    // u, v = 0.637f, 0.667f
+    // 9 = pix 273, 95
+    // u, v = 0.455f, 0.667f
 
     vertices[18].x = vecArray[6][0];
     vertices[18].y = vecArray[6][1];
@@ -517,6 +560,12 @@ int main()
 
     // t7 - 17 on the die
     // indices 6, 9, 10
+    // 6 = pix 327.5, 190
+    // u, v = 0.546f, 0.333f
+    // 9 = pix 273, 95
+    // u, v = 0.455f, 0.667f
+    // 10 = pix 218.5, 190
+    // u, v = 0.364f, 0.333f
 
     vertices[21].x = vecArray[6][0];
     vertices[21].y = vecArray[6][1];
@@ -556,6 +605,12 @@ int main()
 
     // t8 - 3 on the die
     // indices 6, 10, 11
+    // 6 = pix 327.5, 190
+    // u, v = 0.546f, 0.333f
+    // 10 = pix 218.5, 190
+    // u, v = 0.364f, 0.333f
+    // 11 = pix 327, 285
+    // u, v = 0.545f, 0.0f
 
     vertices[24].x = vecArray[6][0];
     vertices[24].y = vecArray[6][1];
@@ -595,6 +650,12 @@ int main()
 
     // t9 - 16 on the die
     // indices 6, 11, 7
+    // 6 = pix 327.5, 190
+    // u, v = 0.546f, 0.333f
+    // 11 = pix 327, 285
+    // u, v = 0.545f, 0.0f
+    // 7 = pix 436.5, 190
+    // u, v = 0.7275f, 0.333f
 
     vertices[27].x = vecArray[6][0];
     vertices[27].y = vecArray[6][1];
@@ -1240,10 +1301,10 @@ int main()
     // Read the image data and store it in an unsigned char array
     
     // for windows:
-//     unsigned char* imageData = stbi_load("dice.jpeg", &imageWidth, &imageHeight, &numChannels, 0);
+//     unsigned char* imageData = stbi_load("d20.png", &imageWidth, &imageHeight, &numChannels, 0);
     
     // for mac:
-     unsigned char* imageData = stbi_load("/Users/carmen/Downloads/OpenGL/Projects/testing/testing/dice.jpeg", &imageWidth, &imageHeight, &numChannels, 0);
+     unsigned char* imageData = stbi_load("/Users/carmen/Downloads/OpenGL/Projects/testing/testing/d20.png", &imageWidth, &imageHeight, &numChannels, 0);
     
 
     // Make sure that we actually loaded the image before uploading the data to the GPU
