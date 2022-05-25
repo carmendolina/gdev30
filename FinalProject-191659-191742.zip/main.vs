@@ -23,8 +23,6 @@ out vec3 outNormal;
 
 out vec3 outPos;
 
-out vec3 viewPos;
-
 uniform mat4 mat;
 uniform mat4 persp;
 uniform mat4 view;
@@ -36,5 +34,4 @@ void main()
     outColor = vertexColor;
     outNormal = mat3(transpose(inverse(mat))) * vertexNormal;
     outPos = vec3(mat * vec4(vertexPosition, 1.0));
-    viewPos = vec3(view);
 }

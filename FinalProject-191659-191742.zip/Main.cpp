@@ -61,15 +61,14 @@ struct Vertex
     GLfloat nx, ny, nz; // normal vector
 };
 
-//float rotvar = sin(glfwGetTime());
-//float increment = 0.0f;
-int current = 0;
-int n = 1;
-float rotateVar = 0.0f;
-float golden = ((1 + sqrt(5)) / 2) / 2;
-//
+int current = 0; // texture in use
+float golden = ((1 + sqrt(5)) / 2) / 2; // for icosahedron formula
+
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
+    // press space to reveal smaller D20 inside
+    // by making big D20 translucent via translucent texture
+    
     if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
     {
         if (current == 0) {
@@ -79,20 +78,6 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
             current = 0;
         }
     }
-
-    //    if (key == GLFW_KEY_RIGHT && action == GLFW_PRESS)
-    //    {
-    //        if (increment != 1.0f) {
-    //            increment += 0.2f;
-    //        }
-    //    }
-    //
-    //    if (key == GLFW_KEY_LEFT && action == GLFW_PRESS)
-    //    {
-    //        if (increment != 0.0f) {
-    //            increment -= 0.2f;
-    //        }
-    //    }
 }
 
 
@@ -123,7 +108,7 @@ int main()
     // Tell GLFW to create a window
     int windowWidth = 800;
     int windowHeight = 800;
-    GLFWwindow* window = glfwCreateWindow(windowWidth, windowHeight, "Final Project", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(windowWidth, windowHeight, "Final Project: Rolling D20s", nullptr, nullptr);
     if (window == nullptr)
     {
         std::cerr << "Failed to create GLFW window!" << std::endl;
@@ -149,6 +134,7 @@ int main()
 
     // --- Vertex specification ---
 
+    // initial 12 vertices of the d20 using golden ratio value cut in half
     glm::vec3 v0 = glm::vec3(0.0f, -golden, 0.5f);
     glm::vec3 v1 = glm::vec3(-golden, -0.5f, 0.0f);
     glm::vec3 v2 = glm::vec3(0.0f, -golden, -0.5f);
@@ -161,9 +147,11 @@ int main()
     glm::vec3 v9 = glm::vec3(-golden, 0.5f, 0.0f);
     glm::vec3 v10 = glm::vec3(0.0f, golden, 0.5f);
     glm::vec3 v11 = glm::vec3(golden, 0.5f, 0.0f);
-
+    
+    // adding vertices to an array for easier assignment via iteration
     glm::vec3 vecArray[12] = { v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11 };
 
+    // calculating normals using the cross function per triangle on the d20
     glm::vec3 normalt0 = cross((v0 - v1), (v1 - v2));
     glm::vec3 normalt1 = cross((v0 - v2), (v2 - v3));
     glm::vec3 normalt2 = cross((v0 - v3), (v3 - v4));
@@ -185,6 +173,7 @@ int main()
     glm::vec3 normalt18 = cross((v5 - v9), (v9 - v1));
     glm::vec3 normalt19 = cross((v1 - v9), (v9 - v8));
 
+    // adding normals to an array for easier assignment via iteration
     glm::vec3 normalFaces[20] = {
         normalt0, normalt1, normalt2, normalt3, normalt4,
         normalt5, normalt6, normalt7, normalt8, normalt9,
@@ -192,49 +181,7 @@ int main()
         normalt15, normalt16, normalt17, normalt18, normalt19
     };
 
-    //    glm::vec3 sumv0 = normalt0+normalt1+normalt2+normalt3+normalt4;
-    //    float l_sumv0 = sqrt((sumv0[0]*sumv0[0]) + (sumv0[1]*sumv0[1]) + (sumv0[2]*sumv0[2]));
-    //    glm::vec3 normalv0 = sumv0 / l_sumv0;
-    //
-    //    glm::vec3 sumv1 = normalt0+normalt4+normalt10+normalt18+normalt19;
-    //    glm::vec3 normalv1 = sumv1 / l_sumv0;
-    //
-    //    glm::vec3 sumv2 = normalt0+normalt1+normalt10+normalt11+normalt12;
-    //    glm::vec3 normalv2 = sumv2 / l_sumv0;
-    //
-    //    glm::vec3 sumv3 = normalt1+normalt2+normalt12+normalt13+normalt14;
-    //    glm::vec3 normalv3 = sumv3 / l_sumv0;
-    //
-    //    glm::vec3 sumv4 = normalt2+normalt3+normalt14+normalt15+normalt16;
-    //    glm::vec3 normalv4 = sumv4 / l_sumv0;
-    //
-    //    glm::vec3 sumv5 = normalt3+normalt4+normalt16+normalt17+normalt18;
-    //    glm::vec3 normalv5 = sumv5 / l_sumv0;
-    //
-    //    glm::vec3 sumv6 = normalt5+normalt6+normalt7+normalt8+normalt9;
-    //    glm::vec3 normalv6 = sumv6 / l_sumv0;
-    //
-    //    glm::vec3 sumv7 = normalt5+normalt9+normalt11+normalt12+normalt13;
-    //    glm::vec3 normalv7 = sumv7 / l_sumv0;
-    //
-    //    glm::vec3 sumv8 = normalt5+normalt6+normalt10+normalt11+normalt19;
-    //    glm::vec3 normalv8 = sumv8 / l_sumv0;
-    //
-    //    glm::vec3 sumv9 = normalt6+normalt7+normalt17+normalt18+normalt19;
-    //    glm::vec3 normalv9 = sumv9 / l_sumv0;
-    //
-    //    glm::vec3 sumv10 = normalt7+normalt8+normalt15+normalt16+normalt17;
-    //    glm::vec3 normalv10 = sumv10 / l_sumv0;
-    //
-    //    glm::vec3 sumv11 = normalt8+normalt9+normalt13+normalt14+normalt15;
-    //    glm::vec3 normalv11 = sumv11 / l_sumv0;
-    //
-    //    glm::vec3 normalArray [12] {
-    //        normalv0, normalv1, normalv2, normalv3, normalv4, normalv5,
-    //        normalv6, normalv7, normalv8, normalv9, normalv10, normalv11
-    //    };
-
-        // Set up the data for each vertex of the triangle
+    // Set up the data for each vertex of the triangle
     Vertex vertices[60];
 
     // t0 - 18 on the die
@@ -1139,6 +1086,8 @@ int main()
     vertices[59].nz = 0.0f;
 
 
+    // assigning normals per triangle
+    
     for (int i = 0; i < 3; i++) {
         vertices[i].nx = normalFaces[0][0];
         vertices[i].ny = normalFaces[0][1];
@@ -1240,14 +1189,8 @@ int main()
         vertices[i].nz = normalFaces[19][2];
     };
 
-    //    for (int i = 0; i < 60; i++) {
-    //        vertices[i].nx = normalArray[i][0];
-    //        vertices[i].ny = normalArray[i][1];
-    //        vertices[i].nz = normalArray[i][2];
-    //    };
 
-
-        // Create a vertex buffer object (VBO), and upload our vertices data to the VBO
+    // Create a vertex buffer object (VBO), and upload our vertices data to the VBO
     GLuint vbo;
     glGenBuffers(1, &vbo);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -1293,9 +1236,9 @@ int main()
 
     // Create a variable that will contain the ID for our texture,
     // and use glGenTextures() to generate the texture itself
-    GLuint tex0;
+    GLuint tex0; // normal d20
     glGenTextures(1, &tex0);
-    GLuint tex1;
+    GLuint tex1; // translucent d20
     glGenTextures(1, &tex1);
 
     // --- Load our image using stb_image ---
@@ -1307,8 +1250,8 @@ int main()
     stbi_set_flip_vertically_on_load(true);
 
     // 'imageWidth' and imageHeight will contain the width and height of the loaded image respectively
-    int imageWidth, imageHeight, numChannels;
-    int imageWidth1, imageHeight1, numChannels1;
+    int imageWidth, imageHeight, numChannels;  // normal d20
+    int imageWidth1, imageHeight1, numChannels1;  // translucent d20
 
     // Read the image data and store it in an unsigned char array
 
@@ -1382,8 +1325,9 @@ int main()
         std::cerr << "Failed to load image" << std::endl;
     }
 
-
     glEnable(GL_DEPTH_TEST);
+    
+    // allows for translucent textures
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -1391,7 +1335,7 @@ int main()
     glClearColor(0.1, 0.05, 0.15, 1);
 
     //    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
-        // Render loop
+    // Render loop
     while (!glfwWindowShouldClose(window))
     {
 
@@ -1403,26 +1347,24 @@ int main()
 
         // Use the vertex array object that we created
         glBindVertexArray(vao);
+        
+        // NOW DRAWING THE SMALL, OPAQUE D20
 
-        //        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
-        //        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexOrder), indexOrder, GL_STATIC_DRAW);
-
-                // Bind tex0 to texture unit 0, and set our tex0 uniform to texture unit 0
+        // Bind tex0 to texture unit 0, and set our tex0 uniform to texture unit 0
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, tex0);
         glUniform1i(glGetUniformLocation(program, "tex0"), 0);
-
-        // cube 1
-
-
-        glm::vec3 lightPos = glm::vec3(2.0f, 0.0f, -20.0f);
-        //        glm::vec3 lightPos = glm::vec3(-30.0f, -10.0f, -30.0f);
+        
+        glm::vec3 lightPos = glm::vec3(-20.0f, 10.0f, -10.0f);
         glUniform3fv(glGetUniformLocation(program, "lightPos"), 1, glm::value_ptr(lightPos));
 
-        glm::vec3 lightColor = glm::vec3(1.0f, 0.8f, 0.9f);
-        glUniform3fv(glGetUniformLocation(program, "lightColor"), 1, glm::value_ptr(lightColor));
+        glm::vec3 specularLight = glm::vec3(1.0f, 0.8f, 0.9f);
+        glUniform3fv(glGetUniformLocation(program, "specularLight"), 1, glm::value_ptr(specularLight));
+        
+        glm::vec3 diffuseLight = glm::vec3(0.9f, 0.8f, 0.6f);
+        glUniform3fv(glGetUniformLocation(program, "diffuseLight"), 1, glm::value_ptr(diffuseLight));
 
-        glm::vec3 ambientLight = 0.1f * lightColor;
+        glm::vec3 ambientLight = 0.1f * specularLight;
         glUniform3fv(glGetUniformLocation(program, "ambientLight"), 1, glm::value_ptr(ambientLight));
 
         glm::vec3 matlAmbient = glm::vec3(0.1f, 0.1f, 0.1f);
@@ -1441,7 +1383,8 @@ int main()
         mat = glm::scale(mat, glm::vec3(0.4f, 0.4f, 0.4f));
 
         glm::mat4 view; // position, target, up
-        view = glm::lookAt(glm::vec3(0.5f, 0.0f, 1.25f),
+        glm::vec3 viewPos = glm::vec3(0.5f, 0.0f, 1.25f);
+        view = glm::lookAt(viewPos,
             glm::vec3(0.0f, 0.0f, 0.0f),
             glm::vec3(0.0f, 1.0f, 0.0f));
 
@@ -1452,6 +1395,7 @@ int main()
 
         glUniformMatrix4fv(glGetUniformLocation(program, "persp"), 1, GL_FALSE, glm::value_ptr(persp));
         glUniformMatrix4fv(glGetUniformLocation(program, "view"), 1, GL_FALSE, glm::value_ptr(view));
+        glUniform3fv(glGetUniformLocation(program, "viewPos"), 1, glm::value_ptr(viewPos));
 
         GLint uniformLocation = glGetUniformLocation(program, "mat");
         glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat));
@@ -1464,6 +1408,8 @@ int main()
 
         // "Unuse" the vertex array object
         glBindVertexArray(0);
+        
+        // NOW DRAWING THE BIG, TRANSLUCENT D20
 
         glm::mat4 mat1 = glm::mat4(1.0f);
         mat1 = glm::translate(mat1, glm::vec3(-0.5f, 0.0f, -0.0f));
