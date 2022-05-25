@@ -66,7 +66,7 @@ struct Vertex
 int current = 0;
 int n = 1;
 float rotateVar = 0.0f;
-float golden = ((1+sqrt(5))/2)/2;
+float golden = ((1 + sqrt(5)) / 2) / 2;
 //
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
@@ -74,26 +74,26 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
     {
         if (current == 0) {
             current = 1;
-        } else {
+        }
+        else {
             current = 0;
         }
     }
 
-//    if (key == GLFW_KEY_RIGHT && action == GLFW_PRESS)
-//    {
-//        if (increment != 1.0f) {
-//            increment += 0.2f;
-//        }
-//    }
-//
-//    if (key == GLFW_KEY_LEFT && action == GLFW_PRESS)
-//    {
-//        if (increment != 0.0f) {
-//            increment -= 0.2f;
-//        }
-//    }
+    //    if (key == GLFW_KEY_RIGHT && action == GLFW_PRESS)
+    //    {
+    //        if (increment != 1.0f) {
+    //            increment += 0.2f;
+    //        }
+    //    }
+    //
+    //    if (key == GLFW_KEY_LEFT && action == GLFW_PRESS)
+    //    {
+    //        if (increment != 0.0f) {
+    //            increment -= 0.2f;
+    //        }
+    //    }
 }
-
 
 
 /// <summary>
@@ -136,7 +136,7 @@ int main()
 
     // Register the callback function that handles when the framebuffer size has changed
     glfwSetFramebufferSizeCallback(window, FramebufferSizeChangedCallback);
-    
+
     // Register the callback function that handles keyboard input
     glfwSetKeyCallback(window, key_callback);
 
@@ -148,95 +148,95 @@ int main()
     }
 
     // --- Vertex specification ---
-    
-    glm::vec3 v0 = glm::vec3(0.0f,-golden,0.5f);
-    glm::vec3 v1 = glm::vec3(-golden,-0.5f,0.0f);
-    glm::vec3 v2 = glm::vec3(0.0f,-golden,-0.5f);
-    glm::vec3 v3 = glm::vec3(golden,-0.5f,0.0f);
-    glm::vec3 v4 = glm::vec3(0.5f,0.0f,golden);
-    glm::vec3 v5 = glm::vec3(-0.5f,0.0f,golden);
-    glm::vec3 v6 = glm::vec3(0.0f,golden,-0.5f);
-    glm::vec3 v7 = glm::vec3(0.5f,0.0f,-golden);
-    glm::vec3 v8 = glm::vec3(-0.5f,0.0f,-golden);
-    glm::vec3 v9 = glm::vec3(-golden,0.5f, 0.0f);
-    glm::vec3 v10 = glm::vec3(0.0f,golden,0.5f);
-    glm::vec3 v11 = glm::vec3(golden,0.5f,0.0f);
-    
-    glm::vec3 vecArray [12] = { v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11 };
 
-    glm::vec3 normalt0 = cross((v0-v1),(v1-v2));
-    glm::vec3 normalt1 = cross((v0-v2),(v2-v3));
-    glm::vec3 normalt2 = cross((v0-v3),(v3-v4));
-    glm::vec3 normalt3 = cross((v0-v4),(v4-v5));
-    glm::vec3 normalt4 = cross((v0-v5),(v5-v1));
-    glm::vec3 normalt5 = cross((v6-v7),(v7-v8));
-    glm::vec3 normalt6 = cross((v6-v8),(v8-v9));
-    glm::vec3 normalt7 = cross((v6-v9),(v9-v10));
-    glm::vec3 normalt8 = cross((v6-v10),(v10-v11));
-    glm::vec3 normalt9 = cross((v6-v11),(v11-v7));
-    glm::vec3 normalt10 = cross((v1-v8),(v8-v2));
-    glm::vec3 normalt11 = cross((v2-v8),(v8-v7));
-    glm::vec3 normalt12 = cross((v2-v7),(v7-v3));
-    glm::vec3 normalt13 = cross((v3-v7),(v7-v11));
-    glm::vec3 normalt14 = cross((v3-v11),(v11-v4));
-    glm::vec3 normalt15 = cross((v4-v11),(v11-v10));
-    glm::vec3 normalt16 = cross((v4-v10),(v10-v5));
-    glm::vec3 normalt17 = cross((v5-v10),(v10-v9));
-    glm::vec3 normalt18 = cross((v5-v9),(v9-v1));
-    glm::vec3 normalt19 = cross((v1-v9),(v9-v8));
-    
-    glm::vec3 normalFaces [20] = {
+    glm::vec3 v0 = glm::vec3(0.0f, -golden, 0.5f);
+    glm::vec3 v1 = glm::vec3(-golden, -0.5f, 0.0f);
+    glm::vec3 v2 = glm::vec3(0.0f, -golden, -0.5f);
+    glm::vec3 v3 = glm::vec3(golden, -0.5f, 0.0f);
+    glm::vec3 v4 = glm::vec3(0.5f, 0.0f, golden);
+    glm::vec3 v5 = glm::vec3(-0.5f, 0.0f, golden);
+    glm::vec3 v6 = glm::vec3(0.0f, golden, -0.5f);
+    glm::vec3 v7 = glm::vec3(0.5f, 0.0f, -golden);
+    glm::vec3 v8 = glm::vec3(-0.5f, 0.0f, -golden);
+    glm::vec3 v9 = glm::vec3(-golden, 0.5f, 0.0f);
+    glm::vec3 v10 = glm::vec3(0.0f, golden, 0.5f);
+    glm::vec3 v11 = glm::vec3(golden, 0.5f, 0.0f);
+
+    glm::vec3 vecArray[12] = { v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11 };
+
+    glm::vec3 normalt0 = cross((v0 - v1), (v1 - v2));
+    glm::vec3 normalt1 = cross((v0 - v2), (v2 - v3));
+    glm::vec3 normalt2 = cross((v0 - v3), (v3 - v4));
+    glm::vec3 normalt3 = cross((v0 - v4), (v4 - v5));
+    glm::vec3 normalt4 = cross((v0 - v5), (v5 - v1));
+    glm::vec3 normalt5 = cross((v6 - v7), (v7 - v8));
+    glm::vec3 normalt6 = cross((v6 - v8), (v8 - v9));
+    glm::vec3 normalt7 = cross((v6 - v9), (v9 - v10));
+    glm::vec3 normalt8 = cross((v6 - v10), (v10 - v11));
+    glm::vec3 normalt9 = cross((v6 - v11), (v11 - v7));
+    glm::vec3 normalt10 = cross((v1 - v8), (v8 - v2));
+    glm::vec3 normalt11 = cross((v2 - v8), (v8 - v7));
+    glm::vec3 normalt12 = cross((v2 - v7), (v7 - v3));
+    glm::vec3 normalt13 = cross((v3 - v7), (v7 - v11));
+    glm::vec3 normalt14 = cross((v3 - v11), (v11 - v4));
+    glm::vec3 normalt15 = cross((v4 - v11), (v11 - v10));
+    glm::vec3 normalt16 = cross((v4 - v10), (v10 - v5));
+    glm::vec3 normalt17 = cross((v5 - v10), (v10 - v9));
+    glm::vec3 normalt18 = cross((v5 - v9), (v9 - v1));
+    glm::vec3 normalt19 = cross((v1 - v9), (v9 - v8));
+
+    glm::vec3 normalFaces[20] = {
         normalt0, normalt1, normalt2, normalt3, normalt4,
         normalt5, normalt6, normalt7, normalt8, normalt9,
         normalt10, normalt11, normalt12, normalt13, normalt14,
         normalt15, normalt16, normalt17, normalt18, normalt19
     };
-    
-//    glm::vec3 sumv0 = normalt0+normalt1+normalt2+normalt3+normalt4;
-//    float l_sumv0 = sqrt((sumv0[0]*sumv0[0]) + (sumv0[1]*sumv0[1]) + (sumv0[2]*sumv0[2]));
-//    glm::vec3 normalv0 = sumv0 / l_sumv0;
-//
-//    glm::vec3 sumv1 = normalt0+normalt4+normalt10+normalt18+normalt19;
-//    glm::vec3 normalv1 = sumv1 / l_sumv0;
-//
-//    glm::vec3 sumv2 = normalt0+normalt1+normalt10+normalt11+normalt12;
-//    glm::vec3 normalv2 = sumv2 / l_sumv0;
-//
-//    glm::vec3 sumv3 = normalt1+normalt2+normalt12+normalt13+normalt14;
-//    glm::vec3 normalv3 = sumv3 / l_sumv0;
-//
-//    glm::vec3 sumv4 = normalt2+normalt3+normalt14+normalt15+normalt16;
-//    glm::vec3 normalv4 = sumv4 / l_sumv0;
-//
-//    glm::vec3 sumv5 = normalt3+normalt4+normalt16+normalt17+normalt18;
-//    glm::vec3 normalv5 = sumv5 / l_sumv0;
-//
-//    glm::vec3 sumv6 = normalt5+normalt6+normalt7+normalt8+normalt9;
-//    glm::vec3 normalv6 = sumv6 / l_sumv0;
-//
-//    glm::vec3 sumv7 = normalt5+normalt9+normalt11+normalt12+normalt13;
-//    glm::vec3 normalv7 = sumv7 / l_sumv0;
-//
-//    glm::vec3 sumv8 = normalt5+normalt6+normalt10+normalt11+normalt19;
-//    glm::vec3 normalv8 = sumv8 / l_sumv0;
-//
-//    glm::vec3 sumv9 = normalt6+normalt7+normalt17+normalt18+normalt19;
-//    glm::vec3 normalv9 = sumv9 / l_sumv0;
-//
-//    glm::vec3 sumv10 = normalt7+normalt8+normalt15+normalt16+normalt17;
-//    glm::vec3 normalv10 = sumv10 / l_sumv0;
-//
-//    glm::vec3 sumv11 = normalt8+normalt9+normalt13+normalt14+normalt15;
-//    glm::vec3 normalv11 = sumv11 / l_sumv0;
-//
-//    glm::vec3 normalArray [12] {
-//        normalv0, normalv1, normalv2, normalv3, normalv4, normalv5,
-//        normalv6, normalv7, normalv8, normalv9, normalv10, normalv11
-//    };
-    
-    // Set up the data for each vertex of the triangle
+
+    //    glm::vec3 sumv0 = normalt0+normalt1+normalt2+normalt3+normalt4;
+    //    float l_sumv0 = sqrt((sumv0[0]*sumv0[0]) + (sumv0[1]*sumv0[1]) + (sumv0[2]*sumv0[2]));
+    //    glm::vec3 normalv0 = sumv0 / l_sumv0;
+    //
+    //    glm::vec3 sumv1 = normalt0+normalt4+normalt10+normalt18+normalt19;
+    //    glm::vec3 normalv1 = sumv1 / l_sumv0;
+    //
+    //    glm::vec3 sumv2 = normalt0+normalt1+normalt10+normalt11+normalt12;
+    //    glm::vec3 normalv2 = sumv2 / l_sumv0;
+    //
+    //    glm::vec3 sumv3 = normalt1+normalt2+normalt12+normalt13+normalt14;
+    //    glm::vec3 normalv3 = sumv3 / l_sumv0;
+    //
+    //    glm::vec3 sumv4 = normalt2+normalt3+normalt14+normalt15+normalt16;
+    //    glm::vec3 normalv4 = sumv4 / l_sumv0;
+    //
+    //    glm::vec3 sumv5 = normalt3+normalt4+normalt16+normalt17+normalt18;
+    //    glm::vec3 normalv5 = sumv5 / l_sumv0;
+    //
+    //    glm::vec3 sumv6 = normalt5+normalt6+normalt7+normalt8+normalt9;
+    //    glm::vec3 normalv6 = sumv6 / l_sumv0;
+    //
+    //    glm::vec3 sumv7 = normalt5+normalt9+normalt11+normalt12+normalt13;
+    //    glm::vec3 normalv7 = sumv7 / l_sumv0;
+    //
+    //    glm::vec3 sumv8 = normalt5+normalt6+normalt10+normalt11+normalt19;
+    //    glm::vec3 normalv8 = sumv8 / l_sumv0;
+    //
+    //    glm::vec3 sumv9 = normalt6+normalt7+normalt17+normalt18+normalt19;
+    //    glm::vec3 normalv9 = sumv9 / l_sumv0;
+    //
+    //    glm::vec3 sumv10 = normalt7+normalt8+normalt15+normalt16+normalt17;
+    //    glm::vec3 normalv10 = sumv10 / l_sumv0;
+    //
+    //    glm::vec3 sumv11 = normalt8+normalt9+normalt13+normalt14+normalt15;
+    //    glm::vec3 normalv11 = sumv11 / l_sumv0;
+    //
+    //    glm::vec3 normalArray [12] {
+    //        normalv0, normalv1, normalv2, normalv3, normalv4, normalv5,
+    //        normalv6, normalv7, normalv8, normalv9, normalv10, normalv11
+    //    };
+
+        // Set up the data for each vertex of the triangle
     Vertex vertices[60];
-    
+
     // t0 - 18 on the die
     // indices 0, 1, 2 (change vecArray[i][constant])
     // 0 = pix 600, 95
@@ -257,7 +257,7 @@ int main()
     vertices[0].nx = 0.0f;
     vertices[0].ny = 0.0f;
     vertices[0].nz = 0.0f;
-    
+
     vertices[1].x = vecArray[1][0];
     vertices[1].y = vecArray[1][1];
     vertices[1].z = vecArray[1][2];
@@ -290,7 +290,7 @@ int main()
     // u, v = 0.818f, 0.667f
     // 3 = pix 545.5, 190
     // u, v = 0.909f, 0.333f
-    
+
     vertices[3].x = vecArray[0][0];
     vertices[3].y = vecArray[0][1];
     vertices[3].z = vecArray[0][2];
@@ -302,7 +302,7 @@ int main()
     vertices[3].nx = 0.0f;
     vertices[3].ny = 0.0f;
     vertices[3].nz = 0.0f;
-    
+
     vertices[4].x = vecArray[2][0];
     vertices[4].y = vecArray[2][1];
     vertices[4].z = vecArray[2][2];
@@ -335,8 +335,8 @@ int main()
     // u, v = 0.0008f, 0.333f
     // 4 = pix 109.5, 190
     // u, v = 0.1825f, 0.333f
-    
-    
+
+
     vertices[6].x = vecArray[0][0];
     vertices[6].y = vecArray[0][1];
     vertices[6].z = vecArray[0][2];
@@ -348,7 +348,7 @@ int main()
     vertices[6].nx = 0.0f;
     vertices[6].ny = 0.0f;
     vertices[6].nz = 0.0f;
-    
+
     vertices[7].x = vecArray[3][0];
     vertices[7].y = vecArray[3][1];
     vertices[7].z = vecArray[3][2];
@@ -381,7 +381,7 @@ int main()
     // u, v = 0.1825f, 0.333f
     // 5 = pix 164, 95
     // u, v = 0.273f, 0.667f
-    
+
     vertices[9].x = vecArray[0][0];
     vertices[9].y = vecArray[0][1];
     vertices[9].z = vecArray[0][2];
@@ -393,7 +393,7 @@ int main()
     vertices[9].nx = 0.0f;
     vertices[9].ny = 0.0f;
     vertices[9].nz = 0.0f;
-    
+
     vertices[10].x = vecArray[4][0];
     vertices[10].y = vecArray[4][1];
     vertices[10].z = vecArray[4][2];
@@ -426,7 +426,7 @@ int main()
     // u, v = 0.273f, 0.667f
     // 1 = pix 109.5, 0
     // u, v = 0.1825f, 1.0f
-    
+
     vertices[12].x = vecArray[0][0];
     vertices[12].y = vecArray[0][1];
     vertices[12].z = vecArray[0][2];
@@ -438,7 +438,7 @@ int main()
     vertices[12].nx = 0.0f;
     vertices[12].ny = 0.0f;
     vertices[12].nz = 0.0f;
-    
+
     vertices[13].x = vecArray[5][0];
     vertices[13].y = vecArray[5][1];
     vertices[13].z = vecArray[5][2];
@@ -483,14 +483,14 @@ int main()
     vertices[15].nx = 0.0f;
     vertices[15].ny = 0.0f;
     vertices[15].nz = 0.0f;
-    
+
     vertices[16].x = vecArray[7][0];
     vertices[16].y = vecArray[7][1];
     vertices[16].z = vecArray[7][2];
     vertices[16].r = 255;
     vertices[16].g = 255;
     vertices[16].b = 255;
-    vertices[16].u =  0.7275f;
+    vertices[16].u = 0.7275f;
     vertices[16].v = 0.333f;
     vertices[16].nx = 0.0f;
     vertices[16].ny = 0.0f;
@@ -528,7 +528,7 @@ int main()
     vertices[18].nx = 0.0f;
     vertices[18].ny = 0.0f;
     vertices[18].nz = 0.0f;
-    
+
     vertices[19].x = vecArray[8][0];
     vertices[19].y = vecArray[8][1];
     vertices[19].z = vecArray[8][2];
@@ -573,7 +573,7 @@ int main()
     vertices[21].nx = 0.0f;
     vertices[21].ny = 0.0f;
     vertices[21].nz = 0.0f;
-    
+
     vertices[22].x = vecArray[9][0];
     vertices[22].y = vecArray[9][1];
     vertices[22].z = vecArray[9][2];
@@ -581,7 +581,7 @@ int main()
     vertices[22].g = 255;
     vertices[22].b = 255;
     vertices[22].u = 0.455f;
-    vertices[22].v =  0.667f;
+    vertices[22].v = 0.667f;
     vertices[22].nx = 0.0f;
     vertices[22].ny = 0.0f;
     vertices[22].nz = 0.0f;
@@ -618,7 +618,7 @@ int main()
     vertices[24].nx = 0.0f;
     vertices[24].ny = 0.0f;
     vertices[24].nz = 0.0f;
-    
+
     vertices[25].x = vecArray[10][0];
     vertices[25].y = vecArray[10][1];
     vertices[25].z = vecArray[10][2];
@@ -663,7 +663,7 @@ int main()
     vertices[27].nx = 0.0f;
     vertices[27].ny = 0.0f;
     vertices[27].nz = 0.0f;
-    
+
     vertices[28].x = vecArray[11][0];
     vertices[28].y = vecArray[11][1];
     vertices[28].z = vecArray[11][2];
@@ -708,7 +708,7 @@ int main()
     vertices[30].nx = 0.0f;
     vertices[30].ny = 0.0f;
     vertices[30].nz = 0.0f;
-    
+
     vertices[31].x = vecArray[8][0];
     vertices[31].y = vecArray[8][1];
     vertices[31].z = vecArray[8][2];
@@ -753,7 +753,7 @@ int main()
     vertices[33].nx = 0.0f;
     vertices[33].ny = 0.0f;
     vertices[33].nz = 0.0f;
-    
+
     vertices[34].x = vecArray[8][0];
     vertices[34].y = vecArray[8][1];
     vertices[34].z = vecArray[8][2];
@@ -798,7 +798,7 @@ int main()
     vertices[36].nx = 0.0f;
     vertices[36].ny = 0.0f;
     vertices[36].nz = 0.0f;
-    
+
     vertices[37].x = vecArray[7][0];
     vertices[37].y = vecArray[7][1];
     vertices[37].z = vecArray[7][2];
@@ -843,7 +843,7 @@ int main()
     vertices[39].nx = 0.0f;
     vertices[39].ny = 0.0f;
     vertices[39].nz = 0.0f;
-    
+
     vertices[40].x = vecArray[7][0];
     vertices[40].y = vecArray[7][1];
     vertices[40].z = vecArray[7][2];
@@ -888,7 +888,7 @@ int main()
     vertices[42].nx = 0.0f;
     vertices[42].ny = 0.0f;
     vertices[42].nz = 0.0f;
-    
+
     vertices[43].x = vecArray[11][0];
     vertices[43].y = vecArray[11][1];
     vertices[43].z = vecArray[11][2];
@@ -933,7 +933,7 @@ int main()
     vertices[45].nx = 0.0f;
     vertices[45].ny = 0.0f;
     vertices[45].nz = 0.0f;
-    
+
     vertices[46].x = vecArray[11][0];
     vertices[46].y = vecArray[11][1];
     vertices[46].z = vecArray[11][2];
@@ -978,7 +978,7 @@ int main()
     vertices[48].nx = 0.0f;
     vertices[48].ny = 0.0f;
     vertices[48].nz = 0.0f;
-    
+
     vertices[49].x = vecArray[10][0];
     vertices[49].y = vecArray[10][1];
     vertices[49].z = vecArray[10][2];
@@ -1023,7 +1023,7 @@ int main()
     vertices[51].nx = 0.0f;
     vertices[51].ny = 0.0f;
     vertices[51].nz = 0.0f;
-    
+
     vertices[52].x = vecArray[10][0];
     vertices[52].y = vecArray[10][1];
     vertices[52].z = vecArray[10][2];
@@ -1068,7 +1068,7 @@ int main()
     vertices[54].nx = 0.0f;
     vertices[54].ny = 0.0f;
     vertices[54].nz = 0.0f;
-    
+
     vertices[55].x = vecArray[9][0];
     vertices[55].y = vecArray[9][1];
     vertices[55].z = vecArray[9][2];
@@ -1113,7 +1113,7 @@ int main()
     vertices[57].nx = 0.0f;
     vertices[57].ny = 0.0f;
     vertices[57].nz = 0.0f;
-    
+
     vertices[58].x = vecArray[9][0];
     vertices[58].y = vecArray[9][1];
     vertices[58].z = vecArray[9][2];
@@ -1138,7 +1138,7 @@ int main()
     vertices[59].ny = 0.0f;
     vertices[59].nz = 0.0f;
 
-    
+
     for (int i = 0; i < 3; i++) {
         vertices[i].nx = normalFaces[0][0];
         vertices[i].ny = normalFaces[0][1];
@@ -1239,15 +1239,15 @@ int main()
         vertices[i].ny = normalFaces[19][1];
         vertices[i].nz = normalFaces[19][2];
     };
-    
-//    for (int i = 0; i < 60; i++) {
-//        vertices[i].nx = normalArray[i][0];
-//        vertices[i].ny = normalArray[i][1];
-//        vertices[i].nz = normalArray[i][2];
-//    };
-    
 
-    // Create a vertex buffer object (VBO), and upload our vertices data to the VBO
+    //    for (int i = 0; i < 60; i++) {
+    //        vertices[i].nx = normalArray[i][0];
+    //        vertices[i].ny = normalArray[i][1];
+    //        vertices[i].nz = normalArray[i][2];
+    //    };
+
+
+        // Create a vertex buffer object (VBO), and upload our vertices data to the VBO
     GLuint vbo;
     glGenBuffers(1, &vbo);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -1261,7 +1261,7 @@ int main()
     glBindVertexArray(vao);
 
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    
+
     // Vertex attribute 0 - Position
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, x));
@@ -1273,19 +1273,19 @@ int main()
     // Vertex attribute 2 - UV coordinate
     glEnableVertexAttribArray(2);
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(offsetof(Vertex, u)));
-    
+
     // Vertex attribute 3 - normal
     glEnableVertexAttribArray(3);
     glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(offsetof(Vertex, nx)));
-    
+
     glEnableVertexAttribArray(0);
-    
+
     // Create a shader program
     // for windows:
-//     GLuint program = CreateShaderProgram("main.vsh", "main.fsh");
-    
+    GLuint program = CreateShaderProgram("main.vsh", "main.fsh");
+
     // for mac:
-     GLuint program = CreateShaderProgram("/Users/carmen/Downloads/OpenGL/Projects/testing/testing/main.vs", "/Users/carmen/Downloads/OpenGL/Projects/testing/testing/main.fs");
+//    GLuint program = CreateShaderProgram("/Users/carmen/Downloads/OpenGL/Projects/testing/testing/main.vs", "/Users/carmen/Downloads/OpenGL/Projects/testing/testing/main.fs");
 
     // Tell OpenGL the dimensions of the region where stuff will be drawn.
     // For now, tell OpenGL to use the whole screen
@@ -1311,14 +1311,15 @@ int main()
     int imageWidth1, imageHeight1, numChannels1;
 
     // Read the image data and store it in an unsigned char array
-    
+
     // for windows:
-//     unsigned char* imageData = stbi_load("d20.png", &imageWidth, &imageHeight, &numChannels, 0);
-    
+    unsigned char* imageData = stbi_load("d20.png", &imageWidth, &imageHeight, &numChannels, 0);
+    unsigned char* imageData1 = stbi_load("d20 transparent.png", &imageWidth1, &imageHeight1, &numChannels1, 0);
+
     // for mac:
-     unsigned char* imageData = stbi_load("/Users/carmen/Downloads/OpenGL/Projects/testing/testing/d20.png", &imageWidth, &imageHeight, &numChannels, 0);
-    unsigned char* imageData1 = stbi_load("/Users/carmen/Downloads/OpenGL/Projects/testing/testing/d20 transparent.png", &imageWidth1, &imageHeight1, &numChannels1, 0);
-    
+//    unsigned char* imageData = stbi_load("/Users/carmen/Downloads/OpenGL/Projects/testing/testing/d20.png", &imageWidth, &imageHeight, &numChannels, 0);
+//    unsigned char* imageData1 = stbi_load("/Users/carmen/Downloads/OpenGL/Projects/testing/testing/d20 transparent.png", &imageWidth1, &imageHeight1, &numChannels1, 0);
+
 
     // Make sure that we actually loaded the image before uploading the data to the GPU
     if (imageData != nullptr)
@@ -1350,7 +1351,7 @@ int main()
     {
         std::cerr << "Failed to load image" << std::endl;
     }
-    
+
     if (imageData1 != nullptr)
     {
         // Our texture is 2D, so we bind our texture to the GL_TEXTURE_2D target
@@ -1380,16 +1381,20 @@ int main()
     {
         std::cerr << "Failed to load image" << std::endl;
     }
-    
-    
+
+
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-//    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
-    // Render loop
+
+    // set the background to purple
+    glClearColor(0.1, 0.05, 0.15, 1);
+
+    //    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
+        // Render loop
     while (!glfwWindowShouldClose(window))
     {
-        
+
         // Clear the colors in our off-screen framebuffer
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -1398,59 +1403,59 @@ int main()
 
         // Use the vertex array object that we created
         glBindVertexArray(vao);
-        
-//        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
-//        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexOrder), indexOrder, GL_STATIC_DRAW);
-        
-        // Bind tex0 to texture unit 0, and set our tex0 uniform to texture unit 0
+
+        //        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
+        //        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexOrder), indexOrder, GL_STATIC_DRAW);
+
+                // Bind tex0 to texture unit 0, and set our tex0 uniform to texture unit 0
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, tex0);
         glUniform1i(glGetUniformLocation(program, "tex0"), 0);
-        
+
         // cube 1
-        
-        
+
+
         glm::vec3 lightPos = glm::vec3(2.0f, 0.0f, -20.0f);
-//        glm::vec3 lightPos = glm::vec3(-30.0f, -10.0f, -30.0f);
+        //        glm::vec3 lightPos = glm::vec3(-30.0f, -10.0f, -30.0f);
         glUniform3fv(glGetUniformLocation(program, "lightPos"), 1, glm::value_ptr(lightPos));
-        
+
         glm::vec3 lightColor = glm::vec3(1.0f, 0.8f, 0.9f);
         glUniform3fv(glGetUniformLocation(program, "lightColor"), 1, glm::value_ptr(lightColor));
-        
+
         glm::vec3 ambientLight = 0.1f * lightColor;
         glUniform3fv(glGetUniformLocation(program, "ambientLight"), 1, glm::value_ptr(ambientLight));
-        
+
         glm::vec3 matlAmbient = glm::vec3(0.1f, 0.1f, 0.1f);
         glm::vec3 matlDiffuse = glm::vec3(0.2f, 0.2f, 0.2f);
         glm::vec3 matlSpecular = glm::vec3(2.0f, 2.0f, 2.0f);
         float matlShiny = 1.5f;
-        
+
         glUniform3fv(glGetUniformLocation(program, "matlAmbient"), 1, glm::value_ptr(matlAmbient));
         glUniform3fv(glGetUniformLocation(program, "matlDiffuse"), 1, glm::value_ptr(matlDiffuse));
         glUniform3fv(glGetUniformLocation(program, "matlSpecular"), 1, glm::value_ptr(matlSpecular));
         glUniform1f(glGetUniformLocation(program, "matlShiny"), matlShiny);
-        
+
         glm::mat4 mat = glm::mat4(1.0f);
         mat = glm::translate(mat, glm::vec3(-0.5f, 0.0f, -0.0f));
         mat = glm::rotate(mat, (float)glfwGetTime(), glm::vec3(1.0f, -1.0f, -1.0f));
         mat = glm::scale(mat, glm::vec3(0.4f, 0.4f, 0.4f));
-        
+
         glm::mat4 view; // position, target, up
         view = glm::lookAt(glm::vec3(0.5f, 0.0f, 1.25f),
-                     glm::vec3(0.0f, 0.0f, 0.0f),
-                     glm::vec3(0.0f, 1.0f, 0.0f));
-        
+            glm::vec3(0.0f, 0.0f, 0.0f),
+            glm::vec3(0.0f, 1.0f, 0.0f));
+
         glm::mat4 persp = glm::mat4(1.0f);
         persp = glm::perspective(90.0f, 1.0f, 0.1f, 100.0f);
-        
+
         mat = persp * view * mat;
-        
+
         glUniformMatrix4fv(glGetUniformLocation(program, "persp"), 1, GL_FALSE, glm::value_ptr(persp));
         glUniformMatrix4fv(glGetUniformLocation(program, "view"), 1, GL_FALSE, glm::value_ptr(view));
-        
+
         GLint uniformLocation = glGetUniformLocation(program, "mat");
         glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat));
-        
+
         glBindVertexArray(0);
         glBindVertexArray(vao);
 
@@ -1459,23 +1464,23 @@ int main()
 
         // "Unuse" the vertex array object
         glBindVertexArray(0);
-        
+
         glm::mat4 mat1 = glm::mat4(1.0f);
         mat1 = glm::translate(mat1, glm::vec3(-0.5f, 0.0f, -0.0f));
         mat1 = glm::rotate(mat1, (float)glfwGetTime(), glm::vec3(-1.0f, 1.0f, 1.0f));
         mat1 = glm::scale(mat1, glm::vec3(0.9f, 0.9f, 0.9f));
-        
+
         mat1 = persp * view * mat1;
-        
+
         glUniformMatrix4fv(glGetUniformLocation(program, "persp"), 1, GL_FALSE, glm::value_ptr(persp));
         glUniformMatrix4fv(glGetUniformLocation(program, "view"), 1, GL_FALSE, glm::value_ptr(view));
-        
+
         uniformLocation = glGetUniformLocation(program, "mat");
         glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat1));
-        
+
         glBindVertexArray(0);
         glBindVertexArray(vao);
-        
+
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, tex1);
         glUniform1i(glGetUniformLocation(program, "tex0"), current);
