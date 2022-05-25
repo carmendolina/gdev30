@@ -26,7 +26,6 @@ out vec3 outPos;
 out vec3 viewPos;
 
 uniform mat4 mat;
-uniform mat4 nmat;
 uniform mat4 persp;
 uniform mat4 view;
 

@@ -72,15 +72,10 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 {
     if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
     {
-//        glfwSetTime(5.0f);
-//        while (glfwGetTime() < 7.0f) {
-//            rotateVar = (float)glfwGetTime();
-//        }
-//        glfwSetTime(0.0f);
-        if (rotateVar == (float)glfwGetTime()) {
-            rotateVar = 0.0f;
+        if (current == 0) {
+            current = 1;
         } else {
-            rotateVar = (float)glfwGetTime();
+            current = 0;
         }
     }
 
@@ -1251,58 +1246,6 @@ int main()
 //        vertices[i].nz = normalArray[i][2];
 //    };
     
-    
-//    for (int i = 0; i < 12; i++) {
-//        vertices[i].x = vecArray[i][0];
-//        vertices[i].y = vecArray[i][1];
-//        vertices[i].z = vecArray[i][2];
-//        vertices[i].r = 255;
-//        vertices[i].g = 255;
-//        vertices[i].b = 255;
-//        vertices[i].u = vertices[i].u;
-//        vertices[i].v = vertices[i].v;
-//        vertices[i].nx = normalArray[i][0];
-//        vertices[i].ny = normalArray[i][1];
-//        vertices[i].nz = normalArray[i][2];
-//        std::cout << i << " " << vertices[i].nx << " " << vertices[i].ny << " " << vertices[i].nz << std::endl;
-//    };
-
-    
-    GLuint indexOrder[] = {
-        // store the index order of drawing
-        // indeces use up A LOT LESS memory than duplicates
-        0, 1, 2,
-        0, 2, 3,
-        0, 3, 4,
-        0, 4, 5,
-        0, 5, 1,
-        6, 7, 8,
-        6, 8, 9,
-        6, 9, 10,
-        6, 10, 11,
-        6, 11, 7,
-        1, 8, 2,
-        2, 8, 7,
-        2, 7, 3,
-        3, 7, 11,
-        3, 11, 4,
-        4, 11, 10,
-        4, 10, 5,
-        5, 10, 9,
-        5, 9, 1,
-        1, 9, 8
-    };
-    
-    GLuint elementbuffer;
-    glGenBuffers(1, &elementbuffer);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER,
-                 sizeof(indexOrder) * sizeof(unsigned int),
-                 &indexOrder[0], GL_STATIC_DRAW
-    );
-
-//    glm::mat4 mat = glm::mat4(1.0f);
-//    mat = glm::rotate(mat, (float)glfwGetTime(), glm::vec3(.0f, 1.0f, 0.0f));
 
     // Create a vertex buffer object (VBO), and upload our vertices data to the VBO
     GLuint vbo;
@@ -1336,7 +1279,7 @@ int main()
     glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(offsetof(Vertex, nx)));
     
     glEnableVertexAttribArray(0);
-
+    
     // Create a shader program
     // for windows:
 //     GLuint program = CreateShaderProgram("main.vsh", "main.fsh");
@@ -1352,6 +1295,8 @@ int main()
     // and use glGenTextures() to generate the texture itself
     GLuint tex0;
     glGenTextures(1, &tex0);
+    GLuint tex1;
+    glGenTextures(1, &tex1);
 
     // --- Load our image using stb_image ---
 
@@ -1363,6 +1308,7 @@ int main()
 
     // 'imageWidth' and imageHeight will contain the width and height of the loaded image respectively
     int imageWidth, imageHeight, numChannels;
+    int imageWidth1, imageHeight1, numChannels1;
 
     // Read the image data and store it in an unsigned char array
     
@@ -1370,7 +1316,8 @@ int main()
 //     unsigned char* imageData = stbi_load("d20.png", &imageWidth, &imageHeight, &numChannels, 0);
     
     // for mac:
-     unsigned char* imageData = stbi_load("/Users/carmen/Downloads/OpenGL/Projects/testing/testing/d20 transparent.png", &imageWidth, &imageHeight, &numChannels, 0);
+     unsigned char* imageData = stbi_load("/Users/carmen/Downloads/OpenGL/Projects/testing/testing/d20.png", &imageWidth, &imageHeight, &numChannels, 0);
+    unsigned char* imageData1 = stbi_load("/Users/carmen/Downloads/OpenGL/Projects/testing/testing/d20 transparent.png", &imageWidth1, &imageHeight1, &numChannels1, 0);
     
 
     // Make sure that we actually loaded the image before uploading the data to the GPU
@@ -1404,10 +1351,40 @@ int main()
         std::cerr << "Failed to load image" << std::endl;
     }
     
+    if (imageData1 != nullptr)
+    {
+        // Our texture is 2D, so we bind our texture to the GL_TEXTURE_2D target
+        glBindTexture(GL_TEXTURE_2D, tex1);
+
+        // Set the filtering methods for magnification and minification
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+        // Set the wrapping method for the s-axis (x-axis) and t-axis (y-axis)
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_REPEAT);
+
+        // Upload the image data to GPU memory
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageWidth1, imageHeight1, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData1);
+
+        // If we set minification to use mipmaps, we can tell OpenGL to generate the mipmaps for us
+        //glGenerateMipmap(GL_TEXTURE_2D);
+
+        // Once we have copied the data over to the GPU, we can delete
+        // the data on the CPU side, since we won't be using it anymore
+        stbi_image_free(imageData1);
+        imageData1 = nullptr;
+    }
+    else
+    {
+        std::cerr << "Failed to load image" << std::endl;
+    }
+    
     
     glEnable(GL_DEPTH_TEST);
-//    glEnable(GL_BLEND);
-//    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 //    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
     // Render loop
     while (!glfwWindowShouldClose(window))
@@ -1428,7 +1405,7 @@ int main()
         // Bind tex0 to texture unit 0, and set our tex0 uniform to texture unit 0
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, tex0);
-        glUniform1i(glGetUniformLocation(program, "tex0"), current);
+        glUniform1i(glGetUniformLocation(program, "tex0"), 0);
         
         // cube 1
         
@@ -1453,19 +1430,16 @@ int main()
         glUniform3fv(glGetUniformLocation(program, "matlSpecular"), 1, glm::value_ptr(matlSpecular));
         glUniform1f(glGetUniformLocation(program, "matlShiny"), matlShiny);
         
-        rotateVar = 0.0f;
-        
         glm::mat4 mat = glm::mat4(1.0f);
         mat = glm::translate(mat, glm::vec3(-0.5f, 0.0f, -0.0f));
-//        mat = glm::rotate(mat, (float)glfwGetTime(), glm::vec3(1.0f, 1.0f, 1.0f));
-        mat = glm::rotate(mat, (float)glfwGetTime(), glm::vec3(-1.0f, 1.0f, 1.0f));
-        mat = glm::scale(mat, glm::vec3(0.8f, 0.8f, 0.8f));
+        mat = glm::rotate(mat, (float)glfwGetTime(), glm::vec3(1.0f, -1.0f, -1.0f));
+        mat = glm::scale(mat, glm::vec3(0.4f, 0.4f, 0.4f));
         
         glm::mat4 view; // position, target, up
         view = glm::lookAt(glm::vec3(0.5f, 0.0f, 1.25f),
                      glm::vec3(0.0f, 0.0f, 0.0f),
                      glm::vec3(0.0f, 1.0f, 0.0f));
-//
+        
         glm::mat4 persp = glm::mat4(1.0f);
         persp = glm::perspective(90.0f, 1.0f, 0.1f, 100.0f);
         
@@ -1477,107 +1451,37 @@ int main()
         GLint uniformLocation = glGetUniformLocation(program, "mat");
         glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat));
         
-        GLint nmuniformLocation = glGetUniformLocation(program, "nmat");
-        glm::mat4 nmat = transpose(inverse(mat));
-        glUniformMatrix4fv(nmuniformLocation, 1, GL_FALSE, glm::value_ptr(nmat));
-        
         glBindVertexArray(0);
         glBindVertexArray(vao);
 
         // Draw the 3 vertices using triangle primitives
         glDrawArrays(GL_TRIANGLES, 0, 60);
-//        glDrawArrays(GL_TRIANGLE_FAN, 6, 6);
-//        glDrawElements(GL_TRIANGLES, 60, GL_UNSIGNED_INT, 0);
+
+        // "Unuse" the vertex array object
+        glBindVertexArray(0);
         
-        // step 6 - cube 2
+        glm::mat4 mat1 = glm::mat4(1.0f);
+        mat1 = glm::translate(mat1, glm::vec3(-0.5f, 0.0f, -0.0f));
+        mat1 = glm::rotate(mat1, (float)glfwGetTime(), glm::vec3(-1.0f, 1.0f, 1.0f));
+        mat1 = glm::scale(mat1, glm::vec3(0.9f, 0.9f, 0.9f));
         
-//        glBindVertexArray(0);
-//        glBindVertexArray(vao);
-//
-//        glm::mat4 mat1 = glm::mat4(1.0f);
-//        mat1 = glm::translate(mat1, glm::vec3(0.3f, -0.4f, -0.5f));
-//        mat1 = glm::rotate(mat1, (float)glfwGetTime(), glm::vec3(1.0f, 0.0f, 0.0f));
-//        mat1 = glm::scale(mat1, glm::vec3(0.3f, 0.3f, 0.3f));
-//
-//        mat1 = persp * view * mat1;
-//
-//        glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat1));
-//
-//        glm::mat4 nmat1 = transpose(inverse(mat1));
-//        glUniformMatrix4fv(nmuniformLocation, 1, GL_FALSE, glm::value_ptr(nmat1));
-//
-//        // Draw the 3 vertices using triangle primitives
-//        glDrawArrays(GL_TRIANGLES, 0, 36);
-//
-//        // step 6 - cube 3
-//
-//        glBindVertexArray(0);
-//        glBindVertexArray(vao);
-//
-//        glm::mat4 mat2 = glm::mat4(1.0f);
-//        mat2 = glm::translate(mat2, glm::vec3(1.0f, 0.4f, -1.0f));
-//        mat2 = glm::rotate(mat2, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
-//        mat2 = glm::scale(mat2, glm::vec3(0.3f, 0.3f, 0.3f));
-//
-//        mat2 = persp * view * mat2;
-//
-//        glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat2));
-//
-//        glm::mat4 nmat2 = transpose(inverse(mat2));
-//        glUniformMatrix4fv(nmuniformLocation, 1, GL_FALSE, glm::value_ptr(nmat2));
-//
-//        // Draw the 3 vertices using triangle primitives
-//        glDrawArrays(GL_TRIANGLES, 0, 36);
-//
-//        // revolving cube around origin
-//
-//        glBindVertexArray(0);
-//        glBindVertexArray(vao);
-//
-//        float radius = 0.8f;
-//        float lookX = sin(glfwGetTime()) * radius;
-//        float lookZ = cos(glfwGetTime()) * radius;
-//
-//        glm::mat4 mat3 = glm::mat4(1.0f);
-//        mat3 = glm::translate(mat3, glm::vec3(lookX, 0.0f, lookZ));
-//        mat3 = glm::rotate(mat3, (float)glfwGetTime(), glm::vec3(1.0f, 0.0f, 0.0f));
-//        mat3 = glm::scale(mat3, glm::vec3(0.1f, 0.1f, 0.1f));
-//
-//        mat3 = persp * view * mat3;
-//
-//        glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat3));
-//
-//        glm::mat4 nmat3 = transpose(inverse(mat3));
-//        glUniformMatrix4fv(nmuniformLocation, 1, GL_FALSE, glm::value_ptr(nmat3));
-//
-//        // Draw the 3 vertices using triangle primitives
-//        glDrawArrays(GL_TRIANGLES, 0, 36);
-//
-//        // revolving cube around another cube
-//
-//        glBindVertexArray(0);
-//        glBindVertexArray(vao);
-//
-//        radius = 0.4f;
-//        // values gotten from translation matrix of step 6 - cube 3
-//        // add x, y, z components to lookX, y, and lookZ
-//        lookX = sin(glfwGetTime()) * radius + 1.0f;
-//        lookZ = cos(glfwGetTime()) * radius - 1.0f;
-//
-//        glm::mat4 mat4 = glm::mat4(1.0f);
-//        mat4 = glm::translate(mat4, glm::vec3(lookX, 0.4f, lookZ));
-//        mat4 = glm::rotate(mat4, (float)glfwGetTime(), glm::vec3(1.0f, 0.0f, 0.0f));
-//        mat4 = glm::scale(mat4, glm::vec3(0.1f, 0.1f, 0.1f));
-//
-//        mat4 = persp * view * mat4;
-//
-//        glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat4));
-//
-//        glm::mat4 nmat4 = transpose(inverse(mat4));
-//        glUniformMatrix4fv(nmuniformLocation, 1, GL_FALSE, glm::value_ptr(nmat4));
-//
-//        // Draw the 3 vertices using triangle primitives
-//        glDrawArrays(GL_TRIANGLES, 0, 36);
+        mat1 = persp * view * mat1;
+        
+        glUniformMatrix4fv(glGetUniformLocation(program, "persp"), 1, GL_FALSE, glm::value_ptr(persp));
+        glUniformMatrix4fv(glGetUniformLocation(program, "view"), 1, GL_FALSE, glm::value_ptr(view));
+        
+        uniformLocation = glGetUniformLocation(program, "mat");
+        glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(mat1));
+        
+        glBindVertexArray(0);
+        glBindVertexArray(vao);
+        
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, tex1);
+        glUniform1i(glGetUniformLocation(program, "tex0"), current);
+
+        // Draw the 3 vertices using triangle primitives
+        glDrawArrays(GL_TRIANGLES, 0, 60);
 
         // "Unuse" the vertex array object
         glBindVertexArray(0);
