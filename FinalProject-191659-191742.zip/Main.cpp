@@ -233,7 +233,7 @@ int main()
 //
 //    glm::vec3 sumv11 = normalt8+normalt9+normalt13+normalt14+normalt15;
 //    glm::vec3 normalv11 = sumv11 / l_sumv0;
-    
+//
 //    glm::vec3 normalArray [12] {
 //        normalv0, normalv1, normalv2, normalv3, normalv4, normalv5,
 //        normalv6, normalv7, normalv8, normalv9, normalv10, normalv11
@@ -245,7 +245,7 @@ int main()
     // t0 - 18 on the die
     // indices 0, 1, 2 (change vecArray[i][constant])
     // 0 = pix 600, 95
-    // u, v = 0.0f, 0.667f
+    // u, v = 1.0f, 0.667f
     // 1 = pix 545.5, 0
     // u, v = 0.909f, 1.0f
     // 2 = pix 491, 95
@@ -257,8 +257,8 @@ int main()
     vertices[0].r = 255;
     vertices[0].g = 255;
     vertices[0].b = 255;
-    vertices[0].u = 0.0f;
-    vertices[0].v = 0.337f;
+    vertices[0].u = 1.0f;
+    vertices[0].v = 0.667f;
     vertices[0].nx = 0.0f;
     vertices[0].ny = 0.0f;
     vertices[0].nz = 0.0f;
@@ -290,7 +290,7 @@ int main()
     // t1 - 4 on the die
     // indices 0, 2, 3 (change vecArray[i][constant])
     // 0 = pix 600, 95
-    // u, v = 0.0f, 0.667f
+    // u, v = 1.0f, 0.667f
     // 2 = pix 491, 95
     // u, v = 0.818f, 0.667f
     // 3 = pix 545.5, 190
@@ -302,7 +302,7 @@ int main()
     vertices[3].r = 255;
     vertices[3].g = 255;
     vertices[3].b = 255;
-    vertices[3].u = 0.0f;
+    vertices[3].u = 1.0f;
     vertices[3].v = 0.667f;
     vertices[3].nx = 0.0f;
     vertices[3].ny = 0.0f;
@@ -695,6 +695,12 @@ int main()
 
     // t10 - 2 on the die
     // indices 1, 8, 2
+    // 1 = pix 436.5, 0
+    // u, v = 0.7275f, 1.0f
+    // 8 = pix 382, 95
+    // u, v = 0.637f, 0.667f
+    // 2 = pix 491, 95
+    // u, v = 0.818f, 0.667f
 
     vertices[30].x = vecArray[1][0];
     vertices[30].y = vecArray[1][1];
@@ -702,8 +708,8 @@ int main()
     vertices[30].r = 255;
     vertices[30].g = 255;
     vertices[30].b = 255;
-    vertices[30].u = 0.0f;
-    vertices[30].v = 0.0f;
+    vertices[30].u = 0.7275f;
+    vertices[30].v = 1.0f;
     vertices[30].nx = 0.0f;
     vertices[30].ny = 0.0f;
     vertices[30].nz = 0.0f;
@@ -714,8 +720,8 @@ int main()
     vertices[31].r = 255;
     vertices[31].g = 255;
     vertices[31].b = 255;
-    vertices[31].u = 0.0f;
-    vertices[31].v = 0.0f;
+    vertices[31].u = 0.637f;
+    vertices[31].v = 0.667f;
     vertices[31].nx = 0.0f;
     vertices[31].ny = 0.0f;
     vertices[31].nz = 0.0f;
@@ -726,14 +732,20 @@ int main()
     vertices[32].r = 255;
     vertices[32].g = 255;
     vertices[32].b = 255;
-    vertices[32].u = 0.0f;
-    vertices[32].v = 0.0f;
+    vertices[32].u = 0.818f;
+    vertices[32].v = 0.667f;
     vertices[32].nx = 0.0f;
     vertices[32].ny = 0.0f;
     vertices[32].nz = 0.0f;
 
     // t11 - 20 on the die
     // indices 2, 8, 7
+    // 2 = pix 491, 95
+    // u, v = 0.818f, 0.667f
+    // 8 = pix 382, 95
+    // u, v = 0.637f, 0.667f
+    // 7 = pix 436.5, 190
+    // u, v = 0.7275f, 0.333f
 
     vertices[33].x = vecArray[2][0];
     vertices[33].y = vecArray[2][1];
@@ -741,8 +753,8 @@ int main()
     vertices[33].r = 255;
     vertices[33].g = 255;
     vertices[33].b = 255;
-    vertices[33].u = 0.0f;
-    vertices[33].v = 0.0f;
+    vertices[33].u = 0.818f;
+    vertices[33].v = 0.667f;
     vertices[33].nx = 0.0f;
     vertices[33].ny = 0.0f;
     vertices[33].nz = 0.0f;
@@ -753,8 +765,8 @@ int main()
     vertices[34].r = 255;
     vertices[34].g = 255;
     vertices[34].b = 255;
-    vertices[34].u = 0.0f;
-    vertices[34].v = 0.0f;
+    vertices[34].u = 0.637f;
+    vertices[34].v = 0.667f;
     vertices[34].nx = 0.0f;
     vertices[34].ny = 0.0f;
     vertices[34].nz = 0.0f;
@@ -765,14 +777,20 @@ int main()
     vertices[35].r = 255;
     vertices[35].g = 255;
     vertices[35].b = 255;
-    vertices[35].u = 0.0f;
-    vertices[35].v = 0.0f;
+    vertices[35].u = 0.7275f;
+    vertices[35].v = 0.333f;
     vertices[35].nx = 0.0f;
     vertices[35].ny = 0.0f;
     vertices[35].nz = 0.0f;
 
     // t12 - 14 on the die
     // indices 2, 7, 3
+    // 2 = pix 491, 95
+    // u, v = 0.818f, 0.667f
+    // 7 = pix 436.5, 190
+    // u, v = 0.7275f, 0.333f
+    // 3 = pix 545.5, 190
+    // u, v = 0.909f, 0.333f
 
     vertices[36].x = vecArray[2][0];
     vertices[36].y = vecArray[2][1];
@@ -780,8 +798,8 @@ int main()
     vertices[36].r = 255;
     vertices[36].g = 255;
     vertices[36].b = 255;
-    vertices[36].u = 0.0f;
-    vertices[36].v = 0.0f;
+    vertices[36].u = 0.818f;
+    vertices[36].v = 0.667f;
     vertices[36].nx = 0.0f;
     vertices[36].ny = 0.0f;
     vertices[36].nz = 0.0f;
@@ -792,8 +810,8 @@ int main()
     vertices[37].r = 255;
     vertices[37].g = 255;
     vertices[37].b = 255;
-    vertices[37].u = 0.0f;
-    vertices[37].v = 0.0f;
+    vertices[37].u = 0.7275f;
+    vertices[37].v = 0.333f;
     vertices[37].nx = 0.0f;
     vertices[37].ny = 0.0f;
     vertices[37].nz = 0.0f;
@@ -804,14 +822,20 @@ int main()
     vertices[38].r = 255;
     vertices[38].g = 255;
     vertices[38].b = 255;
-    vertices[38].u = 0.0f;
-    vertices[38].v = 0.0f;
+    vertices[38].u = 0.909f;
+    vertices[38].v = 0.333f;
     vertices[38].nx = 0.0f;
     vertices[38].ny = 0.0f;
     vertices[38].nz = 0.0f;
 
     // t13 - 6 on the die
     // indices 3, 7, 11
+    // 3 = pix 545.5, 190
+    // u, v = 0.909f, 0.333f
+    // 7 = pix 436.5, 190
+    // u, v = 0.7275f, 0.333f
+    // 11 = pix 490.5, 285
+    // u, v = 0.8175f, 0.0f
 
     vertices[39].x = vecArray[3][0];
     vertices[39].y = vecArray[3][1];
@@ -819,8 +843,8 @@ int main()
     vertices[39].r = 255;
     vertices[39].g = 255;
     vertices[39].b = 255;
-    vertices[39].u = 0.0f;
-    vertices[39].v = 0.0f;
+    vertices[39].u = 0.909f;
+    vertices[39].v = 0.333f;
     vertices[39].nx = 0.0f;
     vertices[39].ny = 0.0f;
     vertices[39].nz = 0.0f;
@@ -831,8 +855,8 @@ int main()
     vertices[40].r = 255;
     vertices[40].g = 255;
     vertices[40].b = 255;
-    vertices[40].u = 0.0f;
-    vertices[40].v = 0.0f;
+    vertices[40].u = 0.7275f;
+    vertices[40].v = 0.333f;
     vertices[40].nx = 0.0f;
     vertices[40].ny = 0.0f;
     vertices[40].nz = 0.0f;
@@ -843,7 +867,7 @@ int main()
     vertices[41].r = 255;
     vertices[41].g = 255;
     vertices[41].b = 255;
-    vertices[41].u = 0.0f;
+    vertices[41].u = 0.8175f;
     vertices[41].v = 0.0f;
     vertices[41].nx = 0.0f;
     vertices[41].ny = 0.0f;
@@ -851,6 +875,12 @@ int main()
 
     // t14 - 9 on the die
     // indices 3, 11, 4
+    // 3 = pix 0, 190
+    // u, v = 0.0f, 0.333f
+    // 11 = pix 54.5, 285
+    // u, v = 0.0908f, 0.0f
+    // 4 = pix 109, 190
+    // u, v = 0.1817f, 0.333f
 
     vertices[42].x = vecArray[3][0];
     vertices[42].y = vecArray[3][1];
@@ -859,7 +889,7 @@ int main()
     vertices[42].g = 255;
     vertices[42].b = 255;
     vertices[42].u = 0.0f;
-    vertices[42].v = 0.0f;
+    vertices[42].v = 0.333f;
     vertices[42].nx = 0.0f;
     vertices[42].ny = 0.0f;
     vertices[42].nz = 0.0f;
@@ -870,7 +900,7 @@ int main()
     vertices[43].r = 255;
     vertices[43].g = 255;
     vertices[43].b = 255;
-    vertices[43].u = 0.0f;
+    vertices[43].u = 0.0908f;
     vertices[43].v = 0.0f;
     vertices[43].nx = 0.0f;
     vertices[43].ny = 0.0f;
@@ -882,14 +912,20 @@ int main()
     vertices[44].r = 255;
     vertices[44].g = 255;
     vertices[44].b = 255;
-    vertices[44].u = 0.0f;
-    vertices[44].v = 0.0f;
+    vertices[44].u = 0.1817f;
+    vertices[44].v = 0.333f;
     vertices[44].nx = 0.0f;
     vertices[44].ny = 0.0f;
     vertices[44].nz = 0.0f;
 
     // t15 - 19 on the die
     // indices 4, 11, 10
+    // 4 = pix 109, 190
+    // u, v = 0.1817f, 0.333f
+    // 11 = pix 163.5, 285
+    // u, v = 0.2725f, 0.0f
+    // 10 = pix 218, 190
+    // u, v = 0.363f, 0.333f
 
     vertices[45].x = vecArray[4][0];
     vertices[45].y = vecArray[4][1];
@@ -897,8 +933,8 @@ int main()
     vertices[45].r = 255;
     vertices[45].g = 255;
     vertices[45].b = 255;
-    vertices[45].u = 0.0f;
-    vertices[45].v = 0.0f;
+    vertices[45].u = 0.1817f;
+    vertices[45].v = 0.333f;
     vertices[45].nx = 0.0f;
     vertices[45].ny = 0.0f;
     vertices[45].nz = 0.0f;
@@ -909,7 +945,7 @@ int main()
     vertices[46].r = 255;
     vertices[46].g = 255;
     vertices[46].b = 255;
-    vertices[46].u = 0.0f;
+    vertices[46].u = 0.2725f;
     vertices[46].v = 0.0f;
     vertices[46].nx = 0.0f;
     vertices[46].ny = 0.0f;
@@ -921,14 +957,20 @@ int main()
     vertices[47].r = 255;
     vertices[47].g = 255;
     vertices[47].b = 255;
-    vertices[47].u = 0.0f;
-    vertices[47].v = 0.0f;
+    vertices[47].u = 0.363f;
+    vertices[47].v = 0.333f;
     vertices[47].nx = 0.0f;
     vertices[47].ny = 0.0f;
     vertices[47].nz = 0.0f;
 
     // t16 - 1 on the die
     // indices 4, 10, 5
+    // 4 = pix 109, 190
+    // u, v = 0.1817f, 0.333f
+    // 10 = pix 218, 190
+    // u, v = 0.363f, 0.333f
+    // 5 = pix 164, 95
+    // u, v = 0.273f, 0.667f
 
     vertices[48].x = vecArray[4][0];
     vertices[48].y = vecArray[4][1];
@@ -936,8 +978,8 @@ int main()
     vertices[48].r = 255;
     vertices[48].g = 255;
     vertices[48].b = 255;
-    vertices[48].u = 0.0f;
-    vertices[48].v = 0.0f;
+    vertices[48].u = 0.1817f;
+    vertices[48].v = 0.333f;
     vertices[48].nx = 0.0f;
     vertices[48].ny = 0.0f;
     vertices[48].nz = 0.0f;
@@ -948,8 +990,8 @@ int main()
     vertices[49].r = 255;
     vertices[49].g = 255;
     vertices[49].b = 255;
-    vertices[49].u = 0.0f;
-    vertices[49].v = 0.0f;
+    vertices[49].u = 0.363f;
+    vertices[49].v = 0.333f;
     vertices[49].nx = 0.0f;
     vertices[49].ny = 0.0f;
     vertices[49].nz = 0.0f;
@@ -960,14 +1002,20 @@ int main()
     vertices[50].r = 255;
     vertices[50].g = 255;
     vertices[50].b = 255;
-    vertices[50].u = 0.0f;
-    vertices[50].v = 0.0f;
+    vertices[50].u = 0.273f;
+    vertices[50].v = 0.667f;
     vertices[50].nx = 0.0f;
     vertices[50].ny = 0.0f;
     vertices[50].nz = 0.0f;
 
     // t17 - 7 on the die
     // indices 5, 10, 9
+    // 5 = pix 164, 95
+    // u, v = 0.273f, 0.667f
+    // 10 = pix 218, 190
+    // u, v = 0.363f, 0.333f
+    // 9 = pix 273, 95
+    // u, v = 0.455f, 0.667f
 
     vertices[51].x = vecArray[5][0];
     vertices[51].y = vecArray[5][1];
@@ -975,8 +1023,8 @@ int main()
     vertices[51].r = 255;
     vertices[51].g = 255;
     vertices[51].b = 255;
-    vertices[51].u = 0.0f;
-    vertices[51].v = 0.0f;
+    vertices[51].u = 0.273f;
+    vertices[51].v = 0.667f;
     vertices[51].nx = 0.0f;
     vertices[51].ny = 0.0f;
     vertices[51].nz = 0.0f;
@@ -987,8 +1035,8 @@ int main()
     vertices[52].r = 255;
     vertices[52].g = 255;
     vertices[52].b = 255;
-    vertices[52].u = 0.0f;
-    vertices[52].v = 0.0f;
+    vertices[52].u = 0.363f;
+    vertices[52].v = 0.333f;
     vertices[52].nx = 0.0f;
     vertices[52].ny = 0.0f;
     vertices[52].nz = 0.0f;
@@ -999,14 +1047,20 @@ int main()
     vertices[53].r = 255;
     vertices[53].g = 255;
     vertices[53].b = 255;
-    vertices[53].u = 0.0f;
-    vertices[53].v = 0.0f;
+    vertices[53].u = 0.455f;
+    vertices[53].v = 0.667f;
     vertices[53].nx = 0.0f;
     vertices[53].ny = 0.0f;
     vertices[53].nz = 0.0f;
 
     // t18 - 15 on the die
     // indices 5, 9, 1
+    // 5 = pix 164, 95
+    // u, v = 0.273f, 0.667f
+    // 9 = pix 273, 95
+    // u, v = 0.455f, 0.667f
+    // 1 = pix 218.5, 0
+    // u, v = 0.364f, 1.0f
 
     vertices[54].x = vecArray[5][0];
     vertices[54].y = vecArray[5][1];
@@ -1014,8 +1068,8 @@ int main()
     vertices[54].r = 255;
     vertices[54].g = 255;
     vertices[54].b = 255;
-    vertices[54].u = 0.0f;
-    vertices[54].v = 0.0f;
+    vertices[54].u = 0.273f;
+    vertices[54].v = 0.667f;
     vertices[54].nx = 0.0f;
     vertices[54].ny = 0.0f;
     vertices[54].nz = 0.0f;
@@ -1026,8 +1080,8 @@ int main()
     vertices[55].r = 255;
     vertices[55].g = 255;
     vertices[55].b = 255;
-    vertices[55].u = 0.0f;
-    vertices[55].v = 0.0f;
+    vertices[55].u = 0.455f;
+    vertices[55].v = 0.667f;
     vertices[55].nx = 0.0f;
     vertices[55].ny = 0.0f;
     vertices[55].nz = 0.0f;
@@ -1038,14 +1092,20 @@ int main()
     vertices[56].r = 255;
     vertices[56].g = 255;
     vertices[56].b = 255;
-    vertices[56].u = 0.0f;
-    vertices[56].v = 0.0f;
+    vertices[56].u = 0.364f;
+    vertices[56].v = 1.0f;
     vertices[56].nx = 0.0f;
     vertices[56].ny = 0.0f;
     vertices[56].nz = 0.0f;
 
     // t19 - 12 on the die
     // indices 1, 9, 8
+    // 1 = pix 327.5, 0
+    // u, v = 0.5458f, 1.0f
+    // 9 = pix 273, 95
+    // u, v = 0.455f, 0.667f
+    // 8 = pix 382, 95
+    // u, v = 0.637f, 0.667f
 
     vertices[57].x = vecArray[1][0];
     vertices[57].y = vecArray[1][1];
@@ -1053,8 +1113,8 @@ int main()
     vertices[57].r = 255;
     vertices[57].g = 255;
     vertices[57].b = 255;
-    vertices[57].u = 0.0f;
-    vertices[57].v = 0.0f;
+    vertices[57].u = 0.5458f;
+    vertices[57].v = 1.0f;
     vertices[57].nx = 0.0f;
     vertices[57].ny = 0.0f;
     vertices[57].nz = 0.0f;
@@ -1065,8 +1125,8 @@ int main()
     vertices[58].r = 255;
     vertices[58].g = 255;
     vertices[58].b = 255;
-    vertices[58].u = 0.0f;
-    vertices[58].v = 0.0f;
+    vertices[58].u = 0.455f;
+    vertices[58].v = 0.667f;
     vertices[58].nx = 0.0f;
     vertices[58].ny = 0.0f;
     vertices[58].nz = 0.0f;
@@ -1077,8 +1137,8 @@ int main()
     vertices[59].r = 255;
     vertices[59].g = 255;
     vertices[59].b = 255;
-    vertices[59].u = 0.0f;
-    vertices[59].v = 0.0f;
+    vertices[59].u = 0.637f;
+    vertices[59].v = 0.667f;
     vertices[59].nx = 0.0f;
     vertices[59].ny = 0.0f;
     vertices[59].nz = 0.0f;
@@ -1184,6 +1244,12 @@ int main()
         vertices[i].ny = normalFaces[19][1];
         vertices[i].nz = normalFaces[19][2];
     };
+    
+//    for (int i = 0; i < 60; i++) {
+//        vertices[i].nx = normalArray[i][0];
+//        vertices[i].ny = normalArray[i][1];
+//        vertices[i].nz = normalArray[i][2];
+//    };
     
     
 //    for (int i = 0; i < 12; i++) {
@@ -1304,7 +1370,7 @@ int main()
 //     unsigned char* imageData = stbi_load("d20.png", &imageWidth, &imageHeight, &numChannels, 0);
     
     // for mac:
-     unsigned char* imageData = stbi_load("/Users/carmen/Downloads/OpenGL/Projects/testing/testing/d20.png", &imageWidth, &imageHeight, &numChannels, 0);
+     unsigned char* imageData = stbi_load("/Users/carmen/Downloads/OpenGL/Projects/testing/testing/d20 transparent.png", &imageWidth, &imageHeight, &numChannels, 0);
     
 
     // Make sure that we actually loaded the image before uploading the data to the GPU
@@ -1340,8 +1406,9 @@ int main()
     
     
     glEnable(GL_DEPTH_TEST);
-    glEnable(GL_BLEND);
-    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE);
+//    glEnable(GL_BLEND);
+//    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+//    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
     // Render loop
     while (!glfwWindowShouldClose(window))
     {
