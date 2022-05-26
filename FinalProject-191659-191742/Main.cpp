@@ -63,11 +63,25 @@ struct Vertex
 
 int current = 0; // texture in use
 float golden = ((1 + sqrt(5)) / 2) / 2; // for icosahedron formula
+// specular, diffuse, bg color variables for turning lights on and off
+// initially set to off
+// diffuse is not 0 so that it looks more realistic, especially against black bg
+float specX = 0.0f;
+float specY = 0.0f;
+float specZ = 0.0f;
+float diffX = 0.15f;
+float diffY = 0.15f;
+float diffZ = 0.15f;
+float bgc_r = 0.0f;
+float bgc_g = 0.0f;
+float bgc_b = 0.0f;
+float bgc_a = 1;
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
     // press space to reveal smaller D20 inside
     // by making big D20 translucent via translucent texture
+    // also turns lights on/off
     
     if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
     {
@@ -76,7 +90,31 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
         }
         else {
             current = 0;
-        }
+        };
+        
+        if (specX == 0.0f && specY == 0.0f && specZ == 0.0f) {
+            specX = 1.0f;
+            specY = 0.8f;
+            specZ = 0.9f;
+            diffX = 0.9f;
+            diffY = 0.8f;
+            diffZ = 0.6f;
+            bgc_r = 0.1;
+            bgc_g = 0.05;
+            bgc_b = 0.15;
+            bgc_a = 1;
+        } else {
+            specX = 0.0f;
+            specY = 0.0f;
+            specZ = 0.0f;
+            diffX = 0.15f;
+            diffY = 0.15f;
+            diffZ = 0.15f;
+            bgc_r = 0.0f;
+            bgc_g = 0.0f;
+            bgc_b = 0.0f;
+            bgc_a = 1;
+        };
     }
 }
 
@@ -1331,13 +1369,12 @@ int main()
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    // set the background to purple
-    glClearColor(0.1, 0.05, 0.15, 1);
-
-    //    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
     // Render loop
     while (!glfwWindowShouldClose(window))
     {
+        
+        // set the background to purple
+        glClearColor(bgc_r, bgc_g, bgc_b, bgc_a);
 
         // Clear the colors in our off-screen framebuffer
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -1358,11 +1395,11 @@ int main()
         // setting light values
         glm::vec3 lightPos = glm::vec3(-20.0f, 10.0f, -10.0f);
         glUniform3fv(glGetUniformLocation(program, "lightPos"), 1, glm::value_ptr(lightPos));
-        glm::vec3 specularLight = glm::vec3(1.0f, 0.8f, 0.9f);
+        glm::vec3 specularLight = glm::vec3(specX, specY, specZ);
         glUniform3fv(glGetUniformLocation(program, "specularLight"), 1, glm::value_ptr(specularLight));
-        glm::vec3 diffuseLight = glm::vec3(0.9f, 0.8f, 0.6f);
+        glm::vec3 diffuseLight = glm::vec3(diffX, diffY, diffZ);
         glUniform3fv(glGetUniformLocation(program, "diffuseLight"), 1, glm::value_ptr(diffuseLight));
-        glm::vec3 ambientLight = 0.1f * specularLight;
+        glm::vec3 ambientLight = 0.1f * glm::vec3(1.0f, 0.8f, 0.9f);
         glUniform3fv(glGetUniformLocation(program, "ambientLight"), 1, glm::value_ptr(ambientLight));
 
         // setting material values
